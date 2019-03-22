@@ -1,0 +1,99 @@
+
+
+package br.iesb.meuprograma.entidades;
+
+public class AdmContasAreceber {
+    
+    private int id;
+    private int competencia;
+    private float valor;
+    private int vencimento; 
+    private float valorPago;
+
+     public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getCompetencia() {
+        return competencia;
+    }
+    public void setCompetencia(int competencia) {
+        
+        this.competencia = competencia;
+            
+        }
+    public void setCompetencia(String competencia) {
+        
+        try{
+            this.competencia = Integer.valueOf(competencia);
+        }catch(NumberFormatException e){
+            this.competencia = 0;
+            
+        }
+       
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
+       
+    }
+    
+    public void setValor(String valor) {
+        
+        try{
+            this.valor = Integer.valueOf(valor);
+        }catch(NumberFormatException e){
+            this.valor = 0;
+            
+        }
+    }
+
+    public int getVencimento() {
+        return vencimento;
+    }
+
+    public void setVencimento(int vencimento) {
+        this.vencimento = vencimento;
+    }
+    
+    public void setVencimento(String vencimento) {
+        
+        try{
+            this.vencimento = Integer.valueOf(vencimento);
+        }catch(NumberFormatException e){
+            this.vencimento = 0;
+            
+        }
+    }
+
+    public float getValorPago() {
+        return valorPago;
+    }
+
+    public void setValorPago(float valorPago) {
+        this.valorPago = valorPago;
+        }
+    
+     public void setValorPago(String valorPago) {
+        
+        try{
+            this.valorPago = Integer.valueOf(valorPago);
+        }catch(NumberFormatException e){
+            this.valorPago = 0;
+            
+        }
+    }
+}
+    
+
+
+
+
