@@ -31,7 +31,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jmiCorrespondencia = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jmMorador = new javax.swing.JMenu();
         jmiCadastro = new javax.swing.JMenuItem();
@@ -110,14 +109,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setText("Saida");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Listagem");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -386,12 +377,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         cadastroVisita.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-        JDialogAdmContasaPagareReceber dialogo = new JDialogAdmContasaPagareReceber(new javax.swing.JFrame(), true);
-        dialogo.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
         JDialogPortaria_ListarVisitantes listaVisita = new JDialogPortaria_ListarVisitantes(new javax.swing.JFrame(), true);
@@ -439,7 +424,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuAjuda;
     private javax.swing.JMenuBar jMenuBarPrincipal;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItemConsultarCadastro;
     private javax.swing.JMenuItem jMenuItemSobre;

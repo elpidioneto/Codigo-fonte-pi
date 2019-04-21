@@ -5,9 +5,9 @@ package br.iesb.meuprograma.entidades;
 public class AdmContasApagar {
     private int id;
     private int competencia;
-    private int valor;
+    private float valor;
     private int vencimento; 
-    private int valorPago;
+    private float valorPago;
 
     public int getId() {
         return id;
@@ -36,7 +36,7 @@ public class AdmContasApagar {
        
     }
 
-    public int getValor() {
+    public float getValor() {
         return valor;
     }
 
@@ -73,7 +73,7 @@ public class AdmContasApagar {
         }
     }
 
-    public int getValorPago() {
+    public float getValorPago() {
         return valorPago;
     }
 

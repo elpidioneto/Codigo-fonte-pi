@@ -5,9 +5,13 @@
  */
 package br.iesb.meuprograma.negocio;
 
+import br.iesb.meuprograma.dados.DadosException;
+import br.iesb.meuprograma.dados.VisitanteDAO;
 import br.iesb.meuprograma.entidades.Visitante;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -40,27 +44,65 @@ public class VisitanteBO implements BO<Visitante> {
     @Override
     public void inserir(Visitante entidade) throws NegocioException {
         validar(entidade);
+        VisitanteDAO dao= new VisitanteDAO();
+        try {
+            dao.inserir(entidade);
+        } catch (DadosException ex) {
+            throw new NegocioException("" + ex);
+        }
     }
 
     @Override
     public void alterar(Visitante entidade) throws NegocioException {
         validar(entidade);
         consultar(entidade.getId());
+        VisitanteDAO dao= new VisitanteDAO();
+        try {
+            dao.alterar(entidade);
+        } catch (DadosException ex) {
+            throw new NegocioException("" + ex);
+        }
     }
 
     @Override
     public void excluir(Visitante entidade) throws NegocioException {
         consultar(entidade.getId());
+        VisitanteDAO dao= new VisitanteDAO();
+        try {
+            dao.excluir(entidade);
+        } catch (DadosException ex) {
+            throw new NegocioException("" + ex);
+        }        
     }
 
     @Override
     public Visitante consultar(int id) throws NegocioException {
-       return new Visitante();
+        Visitante visitante = new Visitante();
+        VisitanteDAO dao = new VisitanteDAO();
+        try {
+            visitante = dao.consultar(id);
+            if(visitante.getId()==0){
+            throw new NegocioException("Nenhum Registro Encontrado");
+            }
+        } catch (DadosException ex) {
+           throw new NegocioException("" + ex);
+        }
+       return visitante;
     }
 
     @Override
     public List<Visitante> listar() throws NegocioException {
-       return new ArrayList<Visitante>();
+      List<Visitante> lista= new ArrayList<Visitante>();
+      VisitanteDAO dao = new VisitanteDAO();
+        try {
+            lista= dao.listar();
+            if(lista.isEmpty()){
+                throw new NegocioException("Nenhum registro encontrado");
+            }
+        } catch (DadosException ex) {
+            throw new NegocioException("" + ex);
+        }
+        return lista;
     }
     
 }

@@ -5,7 +5,15 @@
  */
 package br.iesb.meuprograma.apresentacao;
 
+import br.iesb.meuprograma.entidades.AdmContasApagar;
+import br.iesb.meuprograma.entidades.AdmContasAreceber;
+import br.iesb.meuprograma.negocio.ContasApagarBO;
+import br.iesb.meuprograma.negocio.ContasAreceberBO;
+import br.iesb.meuprograma.negocio.NegocioException;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
   
 
@@ -157,6 +165,11 @@ public class JDialogAdmContasaPagareReceber extends javax.swing.JDialog {
         jButton15 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -218,6 +231,11 @@ public class JDialogAdmContasaPagareReceber extends javax.swing.JDialog {
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
 
         jButton3.setText("Excluir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, -1, -1));
 
         jButton4.setText("Débito");
@@ -227,6 +245,11 @@ public class JDialogAdmContasaPagareReceber extends javax.swing.JDialog {
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, -1, -1));
 
         jButton6.setText("Editar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, -1, -1));
 
         jButton7.setText("Fechar");
@@ -324,12 +347,22 @@ public class JDialogAdmContasaPagareReceber extends javax.swing.JDialog {
         jPanel2.add(lblIncluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
 
         jButton10.setText("Excluir");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, -1, -1));
 
         jButton12.setText("Quitar");
         jPanel2.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, -1, -1));
 
         jButton13.setText("Editar");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, -1, -1));
 
         jButton14.setText("Fechar");
@@ -505,7 +538,8 @@ public class JDialogAdmContasaPagareReceber extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     JDialogLancamentosaReceber dialog = new JDialogLancamentosaReceber(new javax.swing.JFrame(), true);
-    dialog.setVisible(true);        
+    dialog.setVisible(true);  
+    formWindowOpened(null);
         
         
         
@@ -522,6 +556,141 @@ public class JDialogAdmContasaPagareReceber extends javax.swing.JDialog {
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
          dispose();
     }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        ContasAreceberBO bo = new ContasAreceberBO();
+        try{
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            modelo.setRowCount(0);
+           List<AdmContasAreceber> lista = bo.listar();
+           
+           for(AdmContasAreceber admContasAreceber: lista){
+               modelo.addRow(new Object[]{
+               admContasAreceber.getId(),
+               admContasAreceber.getCompetencia(),
+               admContasAreceber.getValor(),
+               admContasAreceber.getVencimento(),
+               admContasAreceber.getValorPago()
+                     
+           });
+           }
+           
+        } catch (NegocioException ex) {
+            if( ex.getCause() == null) {
+            JOptionPane.showMessageDialog(rootPane,ex.getMessage(),"Aviso",JOptionPane.INFORMATION_MESSAGE);
+            } else {
+            JOptionPane.showMessageDialog(rootPane,ex.getCause(),"Aviso",JOptionPane.INFORMATION_MESSAGE);
+            }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+          if(jTable1.getSelectedRow() < 0){
+            JOptionPane.showMessageDialog(this,"Selecione para remover","Aviso",JOptionPane.INFORMATION_MESSAGE);
+        
+                 return;
+                 }
+        int opcao = JOptionPane.showConfirmDialog(this,"Deseja remover?","Confirmação",JOptionPane.INFORMATION_MESSAGE);
+        if(opcao == JOptionPane.NO_OPTION)
+                {
+            return;
+                }
+
+        AdmContasAreceber admContasAreceber = new AdmContasAreceber();
+        admContasAreceber.setId(Integer.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),0) .toString()));
+
+        ContasAreceberBO bo = new ContasAreceberBO();
+            try {
+                bo.excluir(admContasAreceber);
+                formWindowOpened(null);
+                JOptionPane.showMessageDialog(rootPane,"Excluido com sucesso","Informação",JOptionPane.INFORMATION_MESSAGE);
+                }
+                 catch (NegocioException ex) 
+                {
+                if(ex.getCause() == null) 
+                {
+                JOptionPane.showMessageDialog(this,ex.getMessage(),"Aviso",JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                JOptionPane.showMessageDialog(this,ex.getCause() .getMessage(),"Aviso",JOptionPane.INFORMATION_MESSAGE);
+             }
+        }
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if(jTable2.getSelectedRow() < 0){
+            JOptionPane.showMessageDialog(this,"Selecione para remover","Aviso",JOptionPane.INFORMATION_MESSAGE);
+        
+        return;
+        }
+        int opcao = JOptionPane.showConfirmDialog(this,"Deseja remover?","Confirmação",JOptionPane.INFORMATION_MESSAGE);
+        if(opcao == JOptionPane.NO_OPTION)
+        {
+            return;
+        }
+
+        AdmContasApagar admContasApagar = new AdmContasApagar();
+        admContasApagar.setId(Integer.valueOf(jTable2.getValueAt(jTable2.getSelectedRow(),0) .toString()));
+
+        ContasApagarBO bo = new ContasApagarBO();
+            try {
+                bo.excluir(admContasApagar);
+                formWindowOpened(null);
+                 JOptionPane.showMessageDialog(rootPane,"Excluido com sucesso","Informação",JOptionPane.INFORMATION_MESSAGE);
+                }
+                catch (NegocioException ex) 
+                {
+                 if(ex.getCause() == null) 
+                {
+                JOptionPane.showMessageDialog(this,ex.getMessage(),"Aviso",JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                JOptionPane.showMessageDialog(this,ex.getCause() .getMessage(),"Aviso",JOptionPane.INFORMATION_MESSAGE);
+      }
+   }
+        
+        
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+       
+       
+        if(jTable1.getSelectedRow() < 0){
+            JOptionPane.showMessageDialog(this,"Selecione para editar","Aviso",JOptionPane.INFORMATION_MESSAGE);
+            return;
+           }        
+        
+        AdmContasAreceber admContasAreceber = new AdmContasAreceber();
+        admContasAreceber.setId(Integer.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()));
+        admContasAreceber.setCompetencia(Integer.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),1).toString()));
+        admContasAreceber.setValor(Integer.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),2).toString()));
+        admContasAreceber.setVencimento(Integer.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),3).toString()));
+        admContasAreceber.setValorPago(Integer.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),4).toString()));
+        
+        JDialogLancamentosaReceber dialogo = new JDialogLancamentosaReceber((JFrame)this.getParent(), true);
+        dialogo.editar(admContasAreceber);
+        dialogo.setVisible(true);  
+        formWindowOpened(null);
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        
+         if(jTable1.getSelectedRow() < 0){
+            JOptionPane.showMessageDialog(this,"Selecione para editar","Aviso",JOptionPane.INFORMATION_MESSAGE);
+            return;
+           } 
+         
+        AdmContasApagar admContasApagar = new  AdmContasApagar();
+        admContasApagar.setId(Integer.valueOf(jTable2.getValueAt(jTable2.getSelectedRow(),0).toString()));
+        admContasApagar.setCompetencia(Integer.valueOf(jTable2.getValueAt(jTable2.getSelectedRow(),1).toString()));
+        admContasApagar.setValor(Integer.valueOf(jTable2.getValueAt(jTable2.getSelectedRow(),2).toString()));
+        admContasApagar.setVencimento(Integer.valueOf(jTable2.getValueAt(jTable2.getSelectedRow(),3).toString()));
+        admContasApagar.setValorPago(Integer.valueOf(jTable2.getValueAt(jTable2.getSelectedRow(),4).toString()));
+         
+        JDialogLancamentosaPagar dialogo = new JDialogLancamentosaPagar((JFrame)this.getParent(), true);
+        dialogo.editar(admContasApagar);
+        dialogo.setVisible(true);  
+        formWindowOpened(null);
+    }//GEN-LAST:event_jButton13ActionPerformed
 
     /**
      * @param args the command line arguments
