@@ -193,6 +193,15 @@ txtEspacoId.setText(String.valueOf(enxoval.getEspacoId()));
 txtValor.setText(String.valueOf(enxoval.getValor()));
 txtQuantidade.setText(String.valueOf(enxoval.getQuantidade()));  
   }
+  
+ /* public void novo(Enxoval entidade, br.iesb.meuprograma.apresentacao.JDialogEspacoCadastro dialogo) {
+enxoval = entidade;
+        JDialogEspacoCadastro espaco = new JDialog();
+txtNome.setText(null);
+txtEspacoId.setText(dialogo.txtId.getText());
+txtValor.setText(null);
+txtQuantidade.setText(null);  
+  } */
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDesistir;
