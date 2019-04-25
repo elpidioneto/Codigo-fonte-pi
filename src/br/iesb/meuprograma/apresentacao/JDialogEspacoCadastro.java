@@ -47,8 +47,14 @@ public class JDialogEspacoCadastro extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnAlterar = new javax.swing.JButton();
-        BtnNovo = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
+        txtNomeEnxoval = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtValorEnxoval = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtQuantidadeEnxoval = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        btnSalvar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -136,17 +142,29 @@ public class JDialogEspacoCadastro extends javax.swing.JDialog {
             }
         });
 
-        BtnNovo.setText("Novo Enxoval");
-        BtnNovo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnNovoActionPerformed(evt);
-            }
-        });
-
         btnExcluir.setText("Excluir Enxoval");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Nome");
+
+        txtValorEnxoval.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValorEnxovalActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Valor Unitário (R$)");
+
+        jLabel13.setText("Quantidade");
+
+        btnSalvar1.setText("Novo Enxoval");
+        btnSalvar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvar1ActionPerformed(evt);
             }
         });
 
@@ -181,9 +199,26 @@ public class JDialogEspacoCadastro extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtQtdHoras))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(32, 32, 32)
-                                .addComponent(txtQtdConvidados, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel11)
+                                                .addGap(36, 36, 36))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(txtValorEnxoval, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel13)
+                                            .addComponent(txtQuantidadeEnxoval, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(32, 32, 32)
+                                        .addComponent(txtQtdConvidados, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnSalvar1)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,9 +230,7 @@ public class JDialogEspacoCadastro extends javax.swing.JDialog {
                                 .addComponent(btnSalvar)
                                 .addGap(26, 26, 26)
                                 .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(51, 51, 51)
-                                .addComponent(BtnNovo)
-                                .addGap(47, 47, 47)
+                                .addGap(197, 197, 197)
                                 .addComponent(btnExcluir)
                                 .addGap(163, 163, 163)
                                 .addComponent(btnVoltar))
@@ -209,22 +242,29 @@ public class JDialogEspacoCadastro extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel12)
-                .addGap(55, 55, 55)
-                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99))
+                .addGap(193, 193, 193))
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(txtNomeEnxoval, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel10))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addComponent(jLabel12)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -259,11 +299,22 @@ public class JDialogEspacoCadastro extends javax.swing.JDialog {
                     .addComponent(btnSalvar)
                     .addComponent(btnVoltar)
                     .addComponent(btnAlterar)
-                    .addComponent(BtnNovo)
                     .addComponent(btnExcluir))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel13))
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNomeEnxoval, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtQuantidadeEnxoval, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValorEnxoval, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalvar1)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
@@ -351,13 +402,6 @@ JOptionPane.showMessageDialog(rootPane,ex.getCause(),"Aviso",JOptionPane.INFORMA
 
     }//GEN-LAST:event_btnAlterarActionPerformed
 
-    private void BtnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNovoActionPerformed
-
-        JDialogEnxovalCadastro dialogo = new JDialogEnxovalCadastro((JFrame) this.getParent(), true);
-        dialogo.setVisible(true);
-        formWindowOpened(null);
-    }//GEN-LAST:event_BtnNovoActionPerformed
-
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         if(jTable1.getSelectedRow() < 0)
         {JOptionPane.showMessageDialog(this,"Selecione uma Enxoval para remover","Aviso",JOptionPane.INFORMATION_MESSAGE);
@@ -380,6 +424,32 @@ JOptionPane.showMessageDialog(rootPane,ex.getCause(),"Aviso",JOptionPane.INFORMA
             else
             {JOptionPane.showMessageDialog(this,ex.getCause() .getMessage(),"Aviso",JOptionPane.INFORMATION_MESSAGE);}}
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void txtValorEnxovalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorEnxovalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValorEnxovalActionPerformed
+
+    private void btnSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar1ActionPerformed
+
+        enxoval.setNome(txtNomeEnxoval.getText());
+        enxoval.setEspacoId(parseInt(txtId.getText()));
+        enxoval.setQuantidade(parseInt(txtQuantidadeEnxoval.getText()));
+        enxoval.setValor(parseDouble(txtValorEnxoval.getText()));
+
+        EnxovalBO bo = new EnxovalBO();
+        try {
+            if (enxoval.getId() == 0)
+            {bo.inserir(enxoval);}
+            else
+            {bo.alterar(enxoval);}
+            JOptionPane.showMessageDialog(rootPane,"Enxoval inserida com sucesso","Informação",JOptionPane.INFORMATION_MESSAGE);}
+        catch (NegocioException ex)
+        {if(ex.getCause() == null)
+            {JOptionPane.showMessageDialog(this,ex.getMessage(),"Aviso",JOptionPane.INFORMATION_MESSAGE);}
+            else
+            {JOptionPane.showMessageDialog(this,ex.getCause() .getMessage(),"Aviso",JOptionPane.INFORMATION_MESSAGE);}}
+        formWindowOpened(null);
+    }//GEN-LAST:event_btnSalvar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -412,16 +482,30 @@ txtQtdHoras.setText(String.valueOf(espaco.getQtdHoras()));
 txtQtdConvidados.setText(String.valueOf(espaco.getQtdConvidados()));
 txtValorReserva.setText(String.valueOf(espaco.getValorReserva()));
 txtQtdReservaMes.setText(String.valueOf(espaco.getQtdReserva()));
+
    } 
+     
+ private Enxoval enxoval = new Enxoval();
+
+  public void editar(Enxoval entidade){
+enxoval = entidade;
+txtNomeEnxoval.setText(String.valueOf(enxoval.getNome()));
+txtId.setText(String.valueOf(enxoval.getEspacoId()));
+txtValorEnxoval.setText(String.valueOf(enxoval.getValor()));
+txtQuantidadeEnxoval.setText(String.valueOf(enxoval.getQuantidade()));  
+  }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnNovo;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JToggleButton btnSalvar;
+    private javax.swing.JButton btnSalvar1;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -436,9 +520,12 @@ txtQtdReservaMes.setText(String.valueOf(espaco.getQtdReserva()));
     private javax.swing.JTextField txtHoraInicialMin;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNomeEnxoval;
     private javax.swing.JTextField txtQtdConvidados;
     private javax.swing.JTextField txtQtdHoras;
     private javax.swing.JTextField txtQtdReservaMes;
+    private javax.swing.JTextField txtQuantidadeEnxoval;
+    private javax.swing.JTextField txtValorEnxoval;
     private javax.swing.JTextField txtValorReserva;
     // End of variables declaration//GEN-END:variables
 }
