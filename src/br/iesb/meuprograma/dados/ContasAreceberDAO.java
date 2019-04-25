@@ -27,7 +27,7 @@ public class ContasAreceberDAO implements DAO <AdmContasAreceber> {
  
         Connection conexao= ConexaoBD.getConexao();
         
-     String sql ="INSERT INTO AdmContasAreceber (COMPETENCIA, VALOR, VENCIMENTO, VALORPAGO ) VALUES(?,?,?,?,?,?,?,?)";
+     String sql ="INSERT INTO AdmContasAreceber (COMPETENCIA, VALOR, VENCIMENTO, VALORPAGO ) VALUES(?,?,?,?)";
     try{
     PreparedStatement comando = conexao.prepareStatement(sql);
 
@@ -44,7 +44,7 @@ public class ContasAreceberDAO implements DAO <AdmContasAreceber> {
     public void alterar(AdmContasAreceber entidade) throws DadosException {
        Connection conexao= ConexaoBD.getConexao();
         
-     String sql ="UPDATE INTO AdmContasApagar (COMPETENCIA, VALOR, VENCIMENTO, VALORPAGO) VALUES(?,?,?,?,?,?,?,?)";
+     String sql ="UPDATE INTO AdmContasApagar (COMPETENCIA, VALOR, VENCIMENTO, VALORPAGO) VALUES(?,?,?,?)";
     try{
     PreparedStatement comando = conexao.prepareStatement(sql);
 
