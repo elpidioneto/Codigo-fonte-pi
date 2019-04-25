@@ -25,7 +25,7 @@ public class LancBoletosDAO implements DAO <LancBoletos> {
  
         Connection conexao= ConexaoBD.getConexao();
         
-     String sql ="INSERT INTO LancBoletos (CLIENTE, DATA, VENCIMENTO, VALOR) VALUES(?,?,?,?,?,?,?,?)";
+     String sql ="INSERT INTO LancBoletos (CLIENTE, DATA, VENCIMENTO, VALOR) VALUES(?,?,?,?)";
     try{
     PreparedStatement comando = conexao.prepareStatement(sql);
 
@@ -43,7 +43,7 @@ public class LancBoletosDAO implements DAO <LancBoletos> {
     public void alterar(LancBoletos entidade) throws DadosException {
        Connection conexao= ConexaoBD.getConexao();
         
-     String sql ="UPDATE INTO LancBoletos (CLIENTE, DATA, VENCIMENTO, VALOR) VALUES(?,?,?,?,?,?,?,?)";
+     String sql ="UPDATE INTO LancBoletos (CLIENTE, DATA, VENCIMENTO, VALOR) VALUES(?,?,?,?)";
     try{
     PreparedStatement comando = conexao.prepareStatement(sql);
 
