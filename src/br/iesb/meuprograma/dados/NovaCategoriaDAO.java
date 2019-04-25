@@ -27,7 +27,7 @@ public class NovaCategoriaDAO implements DAO <NovaCategoria> {
  
         Connection conexao= ConexaoBD.getConexao();
         
-     String sql ="INSERT INTO NovaCategoria (CATEGORIA) VALUES(?,?,?,?,?,?,?,?)";
+     String sql ="INSERT INTO NovaCategoria (CATEGORIA) VALUES(?)";
     try{
     PreparedStatement comando = conexao.prepareStatement(sql);
 
@@ -42,7 +42,7 @@ public class NovaCategoriaDAO implements DAO <NovaCategoria> {
     public void alterar(NovaCategoria entidade) throws DadosException {
        Connection conexao= ConexaoBD.getConexao();
         
-     String sql ="UPDATE INTO NovaCategoria (CATEGORIA) VALUES(?,?,?,?,?,?,?,?)";
+     String sql ="UPDATE INTO NovaCategoria (CATEGORIA) VALUES(?)";
     try{
     PreparedStatement comando = conexao.prepareStatement(sql);
 
