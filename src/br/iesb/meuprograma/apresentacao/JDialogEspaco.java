@@ -193,7 +193,6 @@ else
     }//GEN-LAST:event_BtnNovoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
         EspacoBO bo = new EspacoBO();
 try { 
 DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
@@ -242,6 +241,10 @@ JOptionPane.showMessageDialog(rootPane,ex.getCause(),"Aviso",JOptionPane.INFORMA
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(JDialogEspaco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
