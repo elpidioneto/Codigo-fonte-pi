@@ -45,13 +45,6 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
         jComboBox1.addItem ("Multas por atraso ou infração");
         jComboBox1.addItem ("Outras receitas");
         
-        
-          
-      
-        
-        
-        
-        
     }
 
     /**
@@ -86,7 +79,7 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 230, -1));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 230, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Lançamentos de boletos");
@@ -128,8 +121,8 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 80, -1));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 80, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 80, -1));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 80, -1));
         getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 80, 20));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -155,21 +148,21 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
                 jFormatherData1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jFormatherData1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 100, -1));
+        getContentPane().add(jFormatherData1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 100, -1));
 
         try {
             jFormatherData2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        getContentPane().add(jFormatherData2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 90, -1));
+        getContentPane().add(jFormatherData2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 90, -1));
 
         try {
             jFormattedCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        getContentPane().add(jFormattedCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 100, -1));
+        getContentPane().add(jFormattedCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 100, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -185,8 +178,6 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
        lancBoletos.setCliente(jFormattedCPF.getText());
        
     
-       //java.util.Date data = jTextPane1.getText();
-       
       lancBoletos.setData(jFormatherData1.getText());
        
      
