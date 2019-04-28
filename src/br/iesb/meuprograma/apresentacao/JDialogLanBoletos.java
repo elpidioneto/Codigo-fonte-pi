@@ -8,7 +8,12 @@ package br.iesb.meuprograma.apresentacao;
 import br.iesb.meuprograma.entidades.LancBoletos;
 import br.iesb.meuprograma.negocio.LancBoletosBO;
 import br.iesb.meuprograma.negocio.NegocioException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -27,6 +32,8 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
         
         
         
+        
+        
         jComboBox1.removeAllItems();
  
         
@@ -37,6 +44,14 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
         jComboBox1.addItem ("Taxa de reparo de bens");
         jComboBox1.addItem ("Multas por atraso ou infração");
         jComboBox1.addItem ("Outras receitas");
+        
+        
+          
+      
+        
+        
+        
+        
     }
 
     /**
@@ -59,14 +74,13 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
         jPanel1 = new javax.swing.JPanel();
+        jFormatherData1 = new javax.swing.JFormattedTextField();
+        jFormatherData2 = new javax.swing.JFormattedTextField();
+        jFormattedCPF = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -84,7 +98,7 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
         jLabel3.setText("Data: ");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
-        jLabel4.setText("CPF/CNPJ/Código: ");
+        jLabel4.setText("CPF:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
         jLabel5.setText("Vencimento: ");
@@ -114,15 +128,9 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 230, 20));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 80, -1));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 80, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 80, -1));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 80, -1));
         getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 80, 20));
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 80, -1));
-
-        jScrollPane1.setViewportView(jTextPane1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 80, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -137,6 +145,32 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 400, 20));
 
+        try {
+            jFormatherData1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormatherData1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormatherData1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jFormatherData1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 100, -1));
+
+        try {
+            jFormatherData2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        getContentPane().add(jFormatherData2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 90, -1));
+
+        try {
+            jFormattedCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        getContentPane().add(jFormattedCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 100, -1));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -148,11 +182,15 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
       LancBoletos lancBoletos = new LancBoletos();
        
-       lancBoletos.setCliente(jTextField1.getText());
+       lancBoletos.setCliente(jFormattedCPF.getText());
        
-       lancBoletos.setData(jTextPane1.getText());
+    
+       //java.util.Date data = jTextPane1.getText();
        
-       lancBoletos.setVencimento(jTextField5.getText());
+      lancBoletos.setData(jFormatherData1.getText());
+       
+     
+       lancBoletos.setVencimento(jFormatherData2.getText());
        
        lancBoletos.setValor(jTextField2.getText());
        
@@ -169,6 +207,10 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jFormatherData1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormatherData1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormatherData1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,6 +258,9 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JFormattedTextField jFormatherData1;
+    private javax.swing.JFormattedTextField jFormatherData2;
+    private javax.swing.JFormattedTextField jFormattedCPF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -225,12 +270,8 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
