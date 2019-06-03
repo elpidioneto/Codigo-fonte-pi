@@ -74,6 +74,8 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
         jFormatherData1 = new javax.swing.JFormattedTextField();
         jFormatherData2 = new javax.swing.JFormattedTextField();
         jFormattedCPF = new javax.swing.JFormattedTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -83,7 +85,7 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Lançamentos de boletos");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 170, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 170, -1));
 
         jLabel2.setText("Tipo de receita");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
@@ -163,6 +165,12 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         getContentPane().add(jFormattedCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 100, -1));
+
+        jLabel9.setText("Id:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+
+        jLabel10.setText("1");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -253,6 +261,7 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField jFormatherData2;
     private javax.swing.JFormattedTextField jFormattedCPF;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -260,6 +269,7 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
