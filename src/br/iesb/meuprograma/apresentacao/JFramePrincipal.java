@@ -37,26 +37,20 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jmiCadastro = new javax.swing.JMenuItem();
         jMenuItemConsultarCadastro = new javax.swing.JMenuItem();
         jmiBiblioteca = new javax.swing.JMenuItem();
+        jmiMensagem = new javax.swing.JMenuItem();
         jmiEmitirBoleto = new javax.swing.JMenuItem();
         jmiLocacaoEspaco = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
         jmiMinhaReserva = new javax.swing.JMenuItem();
         jmAdministracao = new javax.swing.JMenu();
-        jmiAdmReserva = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
         jmiCriarBoleto = new javax.swing.JMenuItem();
-        jmiContasPagarReceber = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
         jmiRelatorio = new javax.swing.JMenuItem();
+        jmiContasPagarReceber = new javax.swing.JMenuItem();
         jmiQuadroDeAvisos = new javax.swing.JMenuItem();
+        jmiAdmReserva = new javax.swing.JMenuItem();
         jmManutencao = new javax.swing.JMenu();
+        jmiUnidadeAutonoma = new javax.swing.JMenuItem();
         jmiEnxoval = new javax.swing.JMenuItem();
         jmiPlanoDeContas = new javax.swing.JMenuItem();
-        jmiUnidadeAutonoma = new javax.swing.JMenuItem();
         jMenuAjuda = new javax.swing.JMenu();
         jMenuItemSobre = new javax.swing.JMenuItem();
 
@@ -157,12 +151,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jmMorador.add(jMenuItemConsultarCadastro);
 
         jmiBiblioteca.setText("Biblioteca");
-        jmiBiblioteca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiBibliotecaActionPerformed(evt);
-            }
-        });
         jmMorador.add(jmiBiblioteca);
+
+        jmiMensagem.setText("Mensagem");
+        jmMorador.add(jmiMensagem);
 
         jmiEmitirBoleto.setText("Emitir Boleto");
         jmiEmitirBoleto.addActionListener(new java.awt.event.ActionListener() {
@@ -180,26 +172,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jmMorador.add(jmiLocacaoEspaco);
 
-        jMenu2.setText("Mensagem");
-
-        jMenuItem4.setText("Entrada");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem4);
-
-        jMenuItem5.setText("Saida");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem5);
-
-        jmMorador.add(jMenu2);
-
         jmiMinhaReserva.setText("Minha Reserva");
         jmiMinhaReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,17 +185,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jmAdministracao.setText("Administração");
         jmAdministracao.setEnabled(false);
 
-        jmiAdmReserva.setText("Administrar Reserva");
-        jmAdministracao.add(jmiAdmReserva);
-
-        jMenuItem8.setText("Biblioteca");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
-            }
-        });
-        jmAdministracao.add(jMenuItem8);
-
         jmiCriarBoleto.setText("Criar Boleto");
         jmiCriarBoleto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,34 +192,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jmAdministracao.add(jmiCriarBoleto);
-
-        jmiContasPagarReceber.setText("Contas a Pagar Receber");
-        jmiContasPagarReceber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiContasPagarReceberActionPerformed(evt);
-            }
-        });
-        jmAdministracao.add(jmiContasPagarReceber);
-
-        jMenu3.setText("Mensagem");
-
-        jMenuItem6.setText("Entrada");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem6);
-
-        jMenuItem7.setText("Saida");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem7);
-
-        jmAdministracao.add(jMenu3);
 
         jmiRelatorio.setText("Relatórios");
         jmiRelatorio.addActionListener(new java.awt.event.ActionListener() {
@@ -268,6 +201,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jmAdministracao.add(jmiRelatorio);
 
+        jmiContasPagarReceber.setText("Contas a Pagar Receber");
+        jmiContasPagarReceber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiContasPagarReceberActionPerformed(evt);
+            }
+        });
+        jmAdministracao.add(jmiContasPagarReceber);
+
         jmiQuadroDeAvisos.setText("Quadro de Avisos");
         jmiQuadroDeAvisos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -276,10 +217,21 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jmAdministracao.add(jmiQuadroDeAvisos);
 
+        jmiAdmReserva.setText("Administrar Reserva");
+        jmAdministracao.add(jmiAdmReserva);
+
         jMenuBarPrincipal.add(jmAdministracao);
 
         jmManutencao.setText("Manutenção");
         jmManutencao.setEnabled(false);
+
+        jmiUnidadeAutonoma.setText("Unidade Autonoma");
+        jmiUnidadeAutonoma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiUnidadeAutonomaActionPerformed(evt);
+            }
+        });
+        jmManutencao.add(jmiUnidadeAutonoma);
 
         jmiEnxoval.setText("Espaço");
         jmiEnxoval.addActionListener(new java.awt.event.ActionListener() {
@@ -296,14 +248,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jmManutencao.add(jmiPlanoDeContas);
-
-        jmiUnidadeAutonoma.setText("Unidade Autonoma");
-        jmiUnidadeAutonoma.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiUnidadeAutonomaActionPerformed(evt);
-            }
-        });
-        jmManutencao.add(jmiUnidadeAutonoma);
 
         jMenuBarPrincipal.add(jmManutencao);
 
@@ -487,59 +431,16 @@ public class JFramePrincipal extends javax.swing.JFrame {
     dialogo.setVisible(true);  
     }//GEN-LAST:event_jmiRelatorioActionPerformed
 
-    private void jmiBibliotecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiBibliotecaActionPerformed
-        // TODO add your handling code here:
-        JDialogBiblioteca dialogo = new JDialogBiblioteca(new javax.swing.JFrame(), true);
-    dialogo.setVisible(true);
-    }//GEN-LAST:event_jmiBibliotecaActionPerformed
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        JDialogCorreioMoradorSaida dialogo = new JDialogCorreioMoradorSaida(new javax.swing.JFrame(), true);
-    dialogo.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        JDialogCorreioMorador dialogo = new JDialogCorreioMorador(new javax.swing.JFrame(), true);
-        dialogo.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        JDialogCorreioAdm dialogo = new JDialogCorreioAdm(new javax.swing.JFrame(), true);
-        dialogo.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
-
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        JDialogCorreio dialogo = new JDialogCorreio(new javax.swing.JFrame(), true);
-        dialogo.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
-
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
-       JDialogBibliotecaAdm dialogo = new JDialogBibliotecaAdm (new javax.swing.JFrame(), true);
-    dialogo.setVisible(true);
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMostra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenuAjuda;
     private javax.swing.JMenuBar jMenuBarPrincipal;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItemConsultarCadastro;
     private javax.swing.JMenuItem jMenuItemSobre;
     private javax.swing.JComboBox<String> jcbPerfil;
@@ -557,6 +458,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiEmitirBoleto;
     private javax.swing.JMenuItem jmiEnxoval;
     private javax.swing.JMenuItem jmiLocacaoEspaco;
+    private javax.swing.JMenuItem jmiMensagem;
     private javax.swing.JMenuItem jmiMinhaReserva;
     private javax.swing.JMenuItem jmiPlanoDeContas;
     private javax.swing.JMenuItem jmiQuadroDeAvisos;
