@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_lancamento_boleto" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7a6f8ccb-29fb-4628-a320-23083bd4cd96">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from lancamentosboleto;	]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="0" width="555" height="55" uuid="85439f10-c0d9-4617-85a4-9b66d7030206"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Bookland" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="81" height="37" uuid="c840a1fc-f8f7-485c-907b-7a393020a284"/>
+				<imageExpression><![CDATA["C:\\Users\\Carolina\\Documents\\NetBeansProject\\projeto integrador\\Codigo-fonte-Projeto-Integrador\\imagens\\Logo-banco-inter-degrade.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="91" y="17" width="162" height="20" uuid="e2ea4067-ddcf-4383-aa40-dd32341dbbd1"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Banco Inter]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="100" height="20" uuid="2ce845a3-94e1-4dfe-804c-4131cf58d045"/>
+				<text><![CDATA[Cedente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="41" width="100" height="20" uuid="ca6e1758-1dcb-44a0-a47e-165103d4e019"/>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="2" width="114" height="20" uuid="9f9044c8-ddf9-4e68-8bdb-71cda2bada00"/>
+				<text><![CDATA[Agência/Cod. Cedente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="311" y="0" width="100" height="20" uuid="266409fb-8c3c-4f3e-855b-bc5c9a9e7394"/>
+				<text><![CDATA[Data do Documento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="2" width="100" height="20" uuid="3cf1cbe4-c1c9-473f-8894-836a0ed4e959"/>
+				<text><![CDATA[Vencimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="40" width="100" height="20" uuid="fe559ae6-4c12-47a2-9c77-d7ef8473ae3b"/>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="311" y="41" width="100" height="20" uuid="91bd9cf5-fb52-4633-9659-fb28296c046e"/>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="40" width="100" height="20" uuid="eaadd64e-b57b-4e37-bb90-9655d321fbb7"/>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="2a6bfdef-8cca-4fa8-9c4b-69e5f12f1dc3"/>
+				<text><![CDATA[Sacado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="36" width="100" height="20" uuid="dd43f345-bd2a-4649-9fdc-15b4bab11438"/>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="0" width="115" height="20" uuid="759441a3-eec1-4eca-94bc-4094e92f7251"/>
+				<text><![CDATA[Número do Documento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="311" y="0" width="100" height="20" uuid="78d1dfbe-1f62-4e2f-9d15-613520364c55"/>
+				<text><![CDATA[Carteira/Nosso número]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="0" width="100" height="20" uuid="f44a6def-cd5f-43c5-bf2a-72196485c8f8"/>
+				<text><![CDATA[Valor do Documento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="36" width="100" height="20" uuid="c2e85cdf-fa75-44bb-bf36-b4db36cb335c"/>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="311" y="36" width="100" height="20" uuid="ce2a504b-33ab-4660-b83e-5751e47dab47"/>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="36" width="100" height="20" uuid="3ea79935-7ebc-42b5-a01a-cfb598851466"/>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="95" width="100" height="20" uuid="cc466b6c-0dbd-4fbb-83ae-d80aa25a1ead"/>
+				<text><![CDATA[Demonstrativo]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
