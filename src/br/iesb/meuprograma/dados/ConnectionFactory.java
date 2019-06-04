@@ -23,7 +23,7 @@ public class ConnectionFactory {
     private static final String URL = "jdbc:mysql://localhost:3306/projeto_integrador";
     private static final String USER = "root";
     private static final String PASS = "";
-
+// cria conexão com os relatórios e o banco
     public static Connection getConnection() {
         try {
             Class.forName(DRIVER);
