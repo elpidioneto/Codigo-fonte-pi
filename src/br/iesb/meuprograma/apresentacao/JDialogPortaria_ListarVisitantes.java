@@ -5,6 +5,15 @@
  */
 package br.iesb.meuprograma.apresentacao;
 
+import br.iesb.meuprograma.entidades.Visitante;
+import br.iesb.meuprograma.negocio.NegocioException;
+import br.iesb.meuprograma.negocio.VisitanteBO;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author LENOVO
@@ -35,6 +44,11 @@ public class JDialogPortaria_ListarVisitantes extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lista de Visitantes");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanelBotoes.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
@@ -53,11 +67,11 @@ public class JDialogPortaria_ListarVisitantes extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Visitante", "Data/Hora Entrada", "Bloco/Unidade", "Data/Hora Saida"
+                "ID", "Nome", "Data Entrada", "HoraEntrada", "Tipo de Visita"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -75,6 +89,31 @@ public class JDialogPortaria_ListarVisitantes extends javax.swing.JDialog {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        VisitanteBO bo = new VisitanteBO();
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) jTableListaVisitantes.getModel();
+            modelo.setRowCount(0);
+            List<Visitante>lista = bo.listar();
+            for(Visitante visitante: lista){
+                modelo.addRow(new Object []{
+                   visitante.getId(),
+                   visitante.getNome(),
+                   visitante.getDataEntrada(),
+                   visitante.getHoraEntrada(),
+                   visitante.getTipoVisita()
+                });
+            }
+        } catch (NegocioException ex) { 
+            if(ex.getCause()==null){
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(this, ex.getCause().getMessage(), "Erro",JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

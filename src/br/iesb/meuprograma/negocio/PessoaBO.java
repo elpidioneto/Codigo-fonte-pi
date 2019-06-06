@@ -1,8 +1,12 @@
-package br.iesb.meuprograma.negocio;
+    package br.iesb.meuprograma.negocio;
 
+import br.iesb.meuprograma.dados.DadosException;
+import br.iesb.meuprograma.dados.PessoaDAO;
 import br.iesb.meuprograma.entidades.Pessoa;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class PessoaBO implements BO<Pessoa> {
@@ -42,28 +46,65 @@ public class PessoaBO implements BO<Pessoa> {
     @Override
     public void inserir(Pessoa entidade) throws NegocioException {
         validar(entidade);
+        PessoaDAO dao= new PessoaDAO();
+        try {
+            dao.inserir(entidade);
+        } catch (DadosException ex) {
+            throw new NegocioException("", ex);
+        }
     }
 
     @Override
     public void alterar(Pessoa entidade) throws NegocioException {
         validar(entidade);
-        consultar(entidade.getId());        
+        consultar(entidade.getId());   
+        PessoaDAO dao= new PessoaDAO();
+        try {
+            dao.alterar(entidade);
+        } catch (DadosException ex) {
+            throw new NegocioException("", ex);
+        }
     }
 
     @Override
     public void excluir(Pessoa entidade) throws NegocioException {
         consultar(entidade.getId());
-        
+        PessoaDAO dao= new PessoaDAO();
+        try {
+            dao.excluir(entidade);
+        } catch (DadosException ex) {
+            throw new NegocioException("", ex);
+        }
     }
 
     @Override
     public Pessoa consultar(int id) throws NegocioException {
-        return new Pessoa();
+        Pessoa pessoa = new Pessoa();
+        PessoaDAO dao= new PessoaDAO();
+        try {
+            pessoa = dao.consultar(id);
+            if(pessoa.getId() == 0){
+                throw new NegocioException("Pessoa não encontrada");
+            }
+        } catch (DadosException ex) {
+            throw new NegocioException("", ex);
+        }
+        return pessoa;  
     }
 
     @Override
     public List<Pessoa> listar() throws NegocioException {
-        return new ArrayList<Pessoa>();
+        List<Pessoa> lista = new ArrayList<Pessoa>();
+        PessoaDAO dao= new PessoaDAO();
+        try {
+            lista = dao.listar();
+            if(lista.isEmpty()){
+                throw new NegocioException("Nenhuma Pessoa encontrada");
+            }
+        } catch (DadosException ex) {
+            throw new NegocioException("", ex);
+        }
+        return lista;
     }
     
     

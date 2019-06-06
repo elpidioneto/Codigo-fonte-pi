@@ -227,7 +227,16 @@ public class JDialogLancamentosaReceber extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
+        
+       admContasAreceber.setCompetencia(Integer.valueOf(jTextField7.getText()));
+       admContasAreceber.setDescricao(String.valueOf(jTextField1.getText()));
+       admContasAreceber.setValor(Integer.valueOf(jTextField6.getText()));
+       admContasAreceber.setVencimento(Integer.valueOf(jTextField8.getText()));
+       admContasAreceber.setValorPago(Integer.valueOf(jTextField2.getText()));
+
         AdmContasAreceber admContasAreceber = new AdmContasAreceber();
+       
+       admContasAreceber.setDescricao(jTextField1.getText());
        
        admContasAreceber.setCompetencia(jTextField7.getText());
        
@@ -297,6 +306,21 @@ public class JDialogLancamentosaReceber extends javax.swing.JDialog {
         });
     }
 
+    private AdmContasAreceber  admContasAreceber = new AdmContasAreceber();
+    
+    public void editar(AdmContasAreceber entidade){
+        admContasAreceber = entidade;
+        jTextField1.setText(String.valueOf(admContasAreceber.getDescricao()));
+        jTextField7.setText(String.valueOf(admContasAreceber.getCompetencia()));
+        jTextField6.setText(String.valueOf(admContasAreceber.getValor()));
+        jTextField8.setText(String.valueOf(admContasAreceber.getVencimento()));
+        jTextField2.setText(String.valueOf(admContasAreceber.getValorPago()));
+        
+        
+        
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> categoria5;
     private javax.swing.JButton jButton1;

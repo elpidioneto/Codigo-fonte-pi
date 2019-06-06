@@ -5,6 +5,15 @@
  */
 package br.iesb.meuprograma.apresentacao;
 
+import br.iesb.meuprograma.entidades.Logado;
+import br.iesb.meuprograma.entidades.ReservaEspaco;
+import br.iesb.meuprograma.negocio.NegocioException;
+import br.iesb.meuprograma.negocio.ReservaEspacoBO;
+import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author gunth
@@ -34,9 +43,18 @@ public class JDialogMinhaReserva extends javax.swing.JDialog {
         btnVoltar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableEspaco = new javax.swing.JTable();
-        btnEnxoval = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtUnidade = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtBloco = new javax.swing.JTextField();
+        btnExcluirReserva = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setText("Espaço");
 
@@ -59,38 +77,38 @@ public class JDialogMinhaReserva extends javax.swing.JDialog {
 
         tableEspaco.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Espaço", "Ano", "Mês", "Dia", "Hora"
+                "Id", "Espaço", "Data"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, true
+                true, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -103,10 +121,20 @@ public class JDialogMinhaReserva extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tableEspaco);
 
-        btnEnxoval.setText("Imprimir Lista Enxoval");
-        btnEnxoval.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setText("Unidade");
+
+        txtUnidade.setEditable(false);
+        txtUnidade.setText("jTextField1");
+
+        jLabel4.setText("Bloco");
+
+        txtBloco.setEditable(false);
+        txtBloco.setText("jTextField2");
+
+        btnExcluirReserva.setText("Excluir Reserva");
+        btnExcluirReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEnxovalActionPerformed(evt);
+                btnExcluirReservaActionPerformed(evt);
             }
         });
 
@@ -117,32 +145,47 @@ public class JDialogMinhaReserva extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(305, 305, 305)
-                        .addComponent(jLabel2)))
-                .addContainerGap(427, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(216, 216, 216)
+                        .addGap(94, 94, 94)
+                        .addComponent(btnExcluirReserva)
+                        .addGap(114, 114, 114)
                         .addComponent(btnListaConvidados)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnEnxoval)
-                        .addGap(18, 18, 18)
+                        .addGap(116, 116, 116)
                         .addComponent(btnVoltar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 93, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(324, 324, 324)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtBloco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBloco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -150,26 +193,94 @@ public class JDialogMinhaReserva extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnListaConvidados)
                     .addComponent(btnVoltar)
-                    .addComponent(btnEnxoval))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(btnExcluirReserva))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnListaConvidadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaConvidadosActionPerformed
-       JDialogListaConvidados dialog = new JDialogListaConvidados(new javax.swing.JFrame(), true);
-        dialog.setVisible(true);
-    }//GEN-LAST:event_btnListaConvidadosActionPerformed
+           if(tableEspaco.getSelectedRow() < 0)
+{JOptionPane.showMessageDialog(this,"Selecione uma Reserva para editar a Lista de Convidados","Aviso",JOptionPane.INFORMATION_MESSAGE);
+return;}
+int opcao = JOptionPane.showConfirmDialog(this,"Deseja incluir a lista a Lista de Convidados?","Confirmação",JOptionPane.INFORMATION_MESSAGE);
+if(opcao == JOptionPane.NO_OPTION)
+{return;}
 
-    private void btnEnxovalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnxovalActionPerformed
-        JDialogImprimeEnxoval dialog = new JDialogImprimeEnxoval(new javax.swing.JFrame(), true);
-        dialog.setVisible(true);
-    }//GEN-LAST:event_btnEnxovalActionPerformed
+ReservaEspaco reserva = new ReservaEspaco();
+
+reserva.setId(Integer.valueOf(tableEspaco.getValueAt(tableEspaco.getSelectedRow(),0) .toString()));
+reserva.setEspaco(tableEspaco.getValueAt(tableEspaco.getSelectedRow(),1) .toString());
+reserva.setDataReserva(tableEspaco.getValueAt(tableEspaco.getSelectedRow(),2) .toString());
+
+JDialogListaConvidados dialogo = new JDialogListaConvidados((JFrame)  this.getParent(), true);
+dialogo.editar(reserva);
+
+dialogo.setVisible(true);       
+formWindowOpened(null);
+
+    }//GEN-LAST:event_btnListaConvidadosActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
        dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
+          editar(logado);
+        
+        String filtro1 = txtUnidade.getText();
+       
+        String filtro2 = txtBloco.getText();
+      
+        
+ReservaEspacoBO bo = new ReservaEspacoBO();
+try { 
+DefaultTableModel modelo = (DefaultTableModel) tableEspaco.getModel();
+modelo.setRowCount(0);
+List<ReservaEspaco> lista = bo.listar();
+for(ReservaEspaco reservaEspaco : lista) {
+if (filtro2 == null ? reservaEspaco.getBloco() == null : filtro2.equals(reservaEspaco.getBloco())) {
+        if (filtro1 == null ? reservaEspaco.getUnidade() == null : filtro1.equals(reservaEspaco.getUnidade())){
+            modelo.addRow(new Object[] {
+                reservaEspaco.getId(),
+                reservaEspaco.getEspaco(),
+                reservaEspaco.getDataReserva()}
+            );    
+        }    
+}
+}} catch (NegocioException ex) {
+if( ex.getCause() == null) {
+JOptionPane.showMessageDialog(rootPane,ex.getMessage(),"Aviso",JOptionPane.INFORMATION_MESSAGE);
+} else {
+JOptionPane.showMessageDialog(rootPane,ex.getCause(),"Aviso",JOptionPane.INFORMATION_MESSAGE);
+}
+} 
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnExcluirReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirReservaActionPerformed
+          if(tableEspaco.getSelectedRow() < 0)
+        {JOptionPane.showMessageDialog(this,"Selecione uma Reserva para remover","Aviso",JOptionPane.INFORMATION_MESSAGE);
+            return;}
+        int opcao = JOptionPane.showConfirmDialog(this,"Deseja remover a Reserva?","Confirmação",JOptionPane.INFORMATION_MESSAGE);
+        if(opcao == JOptionPane.NO_OPTION)
+        {return;}
+
+        ReservaEspaco reserva = new ReservaEspaco();
+        reserva.setId(Integer.valueOf(tableEspaco.getValueAt(tableEspaco.getSelectedRow(),0) .toString()));
+
+        ReservaEspacoBO bo = new ReservaEspacoBO();
+        try {bo.excluir(reserva);
+            formWindowOpened(null);
+            JOptionPane.showMessageDialog(rootPane,"Reserva excluida com sucesso","Informação",JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch (NegocioException ex)
+        {if(ex.getCause() == null)
+            {JOptionPane.showMessageDialog(this,ex.getMessage(),"Aviso",JOptionPane.INFORMATION_MESSAGE);}
+            else
+            {JOptionPane.showMessageDialog(this,ex.getCause() .getMessage(),"Aviso",JOptionPane.INFORMATION_MESSAGE);}}
+    }//GEN-LAST:event_btnExcluirReservaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,13 +327,27 @@ public class JDialogMinhaReserva extends javax.swing.JDialog {
         });
     }
 
+          private Logado logado = new Logado();
+
+  public void editar(Logado entidade){
+logado = entidade;
+txtUnidade.setText(String.valueOf(logado.getUnidade()));
+txtBloco.setText(String.valueOf(logado.getBloco()));
+  } 
+    
+   
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEnxoval;
+    private javax.swing.JButton btnExcluirReserva;
     private javax.swing.JButton btnListaConvidados;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableEspaco;
+    private javax.swing.JTextField txtBloco;
+    private javax.swing.JTextField txtUnidade;
     // End of variables declaration//GEN-END:variables
 }

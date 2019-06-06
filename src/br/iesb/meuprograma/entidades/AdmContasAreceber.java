@@ -5,6 +5,7 @@ package br.iesb.meuprograma.entidades;
 public class AdmContasAreceber {
     
     private int id;
+    private String descricao;
     private int competencia;
     private float valor;
     private int vencimento; 
@@ -90,8 +91,20 @@ public class AdmContasAreceber {
             this.valorPago = 0;
             
         }
+     }
+    public String getDescricao() {
+        return descricao;
     }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    
 }
+    
+    
+    
+
     
 
 

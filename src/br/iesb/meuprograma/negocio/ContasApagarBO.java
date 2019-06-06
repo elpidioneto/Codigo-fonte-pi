@@ -1,9 +1,13 @@
 
 package br.iesb.meuprograma.negocio;
 
+import br.iesb.meuprograma.dados.ContasApagarDAO;
+import br.iesb.meuprograma.dados.DadosException;
 import br.iesb.meuprograma.entidades.AdmContasApagar;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class ContasApagarBO implements BO<AdmContasApagar>{
@@ -36,27 +40,72 @@ public class ContasApagarBO implements BO<AdmContasApagar>{
     public void inserir(AdmContasApagar entidade) throws NegocioException {
         
             validar(entidade);
+            
+            ContasApagarDAO dao = new ContasApagarDAO();
+        try {
+            dao.inserir(entidade);
+        } catch (DadosException ex) {
+           throw new NegocioException("", ex);
+        }
+            
     }
 
     @Override
     public void alterar(AdmContasApagar entidade) throws NegocioException {
         validar(entidade);
         consultar (entidade.getId());
+        
+         ContasApagarDAO dao = new ContasApagarDAO();
+        try {
+            dao.alterar(entidade);
+        } catch (DadosException ex) {
+           throw new NegocioException("", ex);
+        }
+        
     }
 
     @Override
     public void excluir(AdmContasApagar entidade) throws NegocioException {
        consultar (entidade.getId());
+       
+        ContasApagarDAO dao = new ContasApagarDAO();
+        try {
+            dao.excluir(entidade);
+        } catch (DadosException ex) {
+           throw new NegocioException("", ex);
+        }
     }
 
     @Override
     public AdmContasApagar consultar(int id) throws NegocioException {
-        return new AdmContasApagar();
+ 
+        AdmContasApagar admContasApagar = new AdmContasApagar();
+        
+         ContasApagarDAO dao = new ContasApagarDAO();
+        try {
+         admContasApagar = dao.consultar(id);
+         if (admContasApagar.getId()==0){
+             throw new NegocioException ("Lançamento não encontrado");
+         }   
+         } catch (DadosException ex) {
+           throw new NegocioException("", ex);
+        }
+         return admContasApagar;
     }
 
     @Override
     public List<AdmContasApagar> listar() throws NegocioException {
-        return new ArrayList<AdmContasApagar>();
+        List<AdmContasApagar> lista = new ArrayList<AdmContasApagar>();
+        ContasApagarDAO dao = new ContasApagarDAO();
+        try {
+         lista = dao.listar();
+         if (lista.isEmpty()){
+             throw new NegocioException ("Nenhum lançamento encontrado");
+         }   
+         } catch (DadosException ex) {
+           throw new NegocioException("", ex);
+        }
+        return lista;
     }
     
     

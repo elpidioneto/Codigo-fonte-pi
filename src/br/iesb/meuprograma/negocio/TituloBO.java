@@ -1,10 +1,6 @@
 package br.iesb.meuprograma.negocio;
 
 import br.iesb.meuprograma.entidades.Titulo;
-import br.iesb.meuprograma.negocio.BO;
-import br.iesb.meuprograma.negocio.BO;
-import br.iesb.meuprograma.negocio.NegocioException;
-import br.iesb.meuprograma.negocio.NegocioException;
 import java.util.ArrayList;
 import java.util.List;
 

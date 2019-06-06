@@ -17,6 +17,10 @@ public class Pessoa {
     private String telefone;
     private String celular;
     private int Id;
+    private BufferedImage foto;
+    private BufferedImage biometria;
+    private String senha;
+    private String login;
 
     public String getLogin() {
         return login;
@@ -25,11 +29,7 @@ public class Pessoa {
     public void setLogin(String login) {
         this.login = login;
     }
-    private BufferedImage foto;
-    private BufferedImage biometria;
    
-    private String senha;
-    private String login;
 
     public String getSenha() {
         return senha;
