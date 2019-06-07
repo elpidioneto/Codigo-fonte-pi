@@ -5,6 +5,11 @@
  */
 package br.iesb.meuprograma.apresentacao;
 
+import br.iesb.meuprograma.entidades.EsqueciASenha;
+import br.iesb.meuprograma.negocio.EsqueciASenhaBO;
+import br.iesb.meuprograma.negocio.NegocioException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author gunth
@@ -32,11 +37,17 @@ public class JDialogEsqueciASenha extends javax.swing.JDialog {
         txtEmail = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnEnviar = new javax.swing.JButton();
-        btnVoltar = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("E-mail");
+
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Recuperaração de Senha");
@@ -48,10 +59,10 @@ public class JDialogEsqueciASenha extends javax.swing.JDialog {
             }
         });
 
-        btnVoltar.setText("Voltar");
-        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+        btnSair.setText("Fechar");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVoltarActionPerformed(evt);
+                btnSairActionPerformed(evt);
             }
         });
 
@@ -73,7 +84,7 @@ public class JDialogEsqueciASenha extends javax.swing.JDialog {
                         .addGap(145, 145, 145)
                         .addComponent(btnEnviar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnVoltar)))
+                        .addComponent(btnSair)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -88,7 +99,7 @@ public class JDialogEsqueciASenha extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEnviar)
-                    .addComponent(btnVoltar))
+                    .addComponent(btnSair))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -96,12 +107,26 @@ public class JDialogEsqueciASenha extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-        // TODO add your handling code here:
+       EsqueciASenha esqueci = new EsqueciASenha();
+ 
+esqueci.setEmail(txtEmail.getText());
+ 
+EsqueciASenhaBO bo = new EsqueciASenhaBO();
+try {  
+bo.inserir(esqueci);
+ dispose();
+}
+catch (NegocioException e) 
+{JOptionPane.showMessageDialog(rootPane,e.getMessage(),"Aviso",JOptionPane.WARNING_MESSAGE);}
     }//GEN-LAST:event_btnEnviarActionPerformed
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-      dispose();
-    }//GEN-LAST:event_btnVoltarActionPerformed
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+       dispose();  
+    }//GEN-LAST:event_btnSairActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        
+    }//GEN-LAST:event_txtEmailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,7 +175,7 @@ public class JDialogEsqueciASenha extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnviar;
-    private javax.swing.JButton btnVoltar;
+    private javax.swing.JButton btnSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txtEmail;
