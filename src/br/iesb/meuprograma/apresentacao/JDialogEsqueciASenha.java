@@ -114,7 +114,7 @@ esqueci.setEmail(txtEmail.getText());
 EsqueciASenhaBO bo = new EsqueciASenhaBO();
 try {  
 bo.inserir(esqueci);
- dispose();
+ //dispose();
 }
 catch (NegocioException e) 
 {JOptionPane.showMessageDialog(rootPane,e.getMessage(),"Aviso",JOptionPane.WARNING_MESSAGE);}
