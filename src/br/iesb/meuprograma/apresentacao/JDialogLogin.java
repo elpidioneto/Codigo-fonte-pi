@@ -1,5 +1,6 @@
 package br.iesb.meuprograma.apresentacao;
 
+import br.iesb.meuprograma.dados.LoginDAO;
 import br.iesb.meuprograma.entidades.Login;
 import br.iesb.meuprograma.negocio.LoginBO;
 import br.iesb.meuprograma.negocio.NegocioException;
@@ -139,17 +140,15 @@ public class JDialogLogin extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-      Login login = new Login();
- 
-login.setLogin(txtLogin.getText());
- 
-LoginBO bo = new LoginBO();
-try {  
-bo.inserir(login);
- dispose();
-}
-catch (NegocioException e) 
-{JOptionPane.showMessageDialog(rootPane,e.getMessage(),"Aviso",JOptionPane.WARNING_MESSAGE);}
+    
+       LoginDAO dao = new LoginDAO();
+       
+       if(dao.checkLogin(txtLogin.getText(), txtSenha.getText())){
+           new JFramePrincipal().setVisible(true);
+           this.dispose();
+       }else{
+           JOptionPane.showMessageDialog(null, "Senha incorreta!");
+       }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnEsqueciSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsqueciSenhaActionPerformed
