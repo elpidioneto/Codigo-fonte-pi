@@ -12,6 +12,8 @@ import java.util.List;
     public void validar(EsqueciASenha entidade) throws NegocioException {
        if (entidade.getEmail() == null || entidade.getEmail().trim().equals("") ) {
         throw new NegocioException("O campo Email não pode ser vazio");
+        
+        
     }}
 
     @Override
