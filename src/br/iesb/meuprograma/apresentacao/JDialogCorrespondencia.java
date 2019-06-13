@@ -194,13 +194,14 @@ correspondencia.setRastreamento(txtRastreamento.getText());
   try { 
   bo.inserir(correspondencia);
   JOptionPane.showMessageDialog(rootPane,"Correspondencia inserida com sucesso","Informação",JOptionPane.INFORMATION_MESSAGE);
- }
+    dispose(); 
+  }
   catch (NegocioException e) 
   {JOptionPane.showMessageDialog(rootPane,e.getMessage(),"Aviso",JOptionPane.WARNING_MESSAGE);}
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-     dispose();
+     
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
