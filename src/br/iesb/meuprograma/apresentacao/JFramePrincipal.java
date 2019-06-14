@@ -402,8 +402,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemConsultarCadastroActionPerformed
 
     private void jmiContasPagarReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiContasPagarReceberActionPerformed
-        JDialogAdmContasaPagareReceber dialogo = new JDialogAdmContasaPagareReceber(new javax.swing.JFrame(), true);
-        dialogo.setVisible(true);
+       
     }//GEN-LAST:event_jmiContasPagarReceberActionPerformed
 
     private void jmiCriarBoletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCriarBoletoActionPerformed
