@@ -5,7 +5,10 @@
  */
 package br.iesb.meuprograma.apresentacao;
 
+import br.iesb.meuprograma.dados.ConnectionFactory;
+import java.sql.Connection;
 import javax.swing.JFrame;
+
 
   
 
@@ -218,6 +221,11 @@ public class JDialogAdmContasaPagareReceber extends javax.swing.JDialog {
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
 
         jButton3.setText("Excluir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, -1, -1));
 
         jButton4.setText("Débito");
@@ -265,6 +273,11 @@ public class JDialogAdmContasaPagareReceber extends javax.swing.JDialog {
         jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, -1, -1));
 
         jButton17.setText("Imprimir");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 80, -1, -1));
 
         jTabbedPane3.addTab("Entradas", jPanel1);
@@ -466,6 +479,11 @@ public class JDialogAdmContasaPagareReceber extends javax.swing.JDialog {
         jPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, -1, -1));
 
         jButton15.setText("Imprimir");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 80, -1, -1));
 
         jPanel9.add(jPanel3);
@@ -522,6 +540,42 @@ public class JDialogAdmContasaPagareReceber extends javax.swing.JDialog {
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
          dispose();
     }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        
+      /*  Connection conn = ConnectionFactory.getConnection();
+      
+        String src = "relatoriocontasareceber.jasper";
+      
+        JasperPrint jasperPrint = null; 
+  
+        
+        try{
+            
+            JaspertPrint = jasperFillManager.fillReport (src, null,conn);
+        
+        }catch (JRException ex){
+            
+            System.out.println("Error: " + ex);
+        }
+        
+        
+        */
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
