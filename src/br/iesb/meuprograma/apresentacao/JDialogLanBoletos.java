@@ -37,13 +37,13 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
         jComboBox1.removeAllItems();
  
         
-        jComboBox1.addItem ("Cotas Condominais - Residencial");
-        jComboBox1.addItem ("Cotas Condominais - Comercial");
-        jComboBox1.addItem ("Taxas para uso do Salão de Festa");
-        jComboBox1.addItem ("Taxa de reposição de bens");
-        jComboBox1.addItem ("Taxa de reparo de bens");
-        jComboBox1.addItem ("Multas por atraso ou infração");
-        jComboBox1.addItem ("Outras receitas");
+        jComboBox1.addItem ("(1)Cotas Condominais - Residencial");
+        jComboBox1.addItem ("(2)Cotas Condominais - Comercial");
+        jComboBox1.addItem ("(3)Taxas para uso do Salão de Festa");
+        jComboBox1.addItem ("(4)Taxa de reposição de bens");
+        jComboBox1.addItem ("(5)Taxa de reparo de bens");
+        jComboBox1.addItem ("(6)Multas por atraso ou infração");
+        jComboBox1.addItem ("(7)Outras receitas");
         
     }
 
@@ -164,7 +164,7 @@ public class JDialogLanBoletos extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        getContentPane().add(jFormattedCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 100, -1));
+        getContentPane().add(jFormattedCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 180, 30));
 
         jLabel9.setText("Id:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
