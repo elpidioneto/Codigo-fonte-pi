@@ -220,7 +220,7 @@ public class JDialogPortaria_CadastroVisitante extends javax.swing.JDialog {
         visitante.setCpf(jFormattedTextFieldCPF.getText());
         visitante.setRg(jFormattedTextFieldRG.getText());
         visitante.setBloco((String) jComboBoxBloco.getSelectedItem());
-        visitante.setUnidade((String) jComboBoxUnidade.getSelectedItem());
+        visitante.setUnidade((int) jComboBoxUnidade.getSelectedItem());
         visitante.setTipoVisita((String) jComboBoxSelVisita.getSelectedItem());
         visitante.setDataHoraEntrada(dataTx);
 
@@ -256,7 +256,7 @@ public class JDialogPortaria_CadastroVisitante extends javax.swing.JDialog {
         // TODO add your handling code here:
         UnidadeBO uniBO = new UnidadeBO();
         jComboBoxUnidade.removeAllItems();
-        jComboBoxUnidade.addItem("");
+        jComboBoxUnidade.addItem(0);
         try {
             for (Unidade unidade : uniBO.listar()) {
                 Map<String, Integer> blocoUnidade = new HashMap<String, Integer>();
