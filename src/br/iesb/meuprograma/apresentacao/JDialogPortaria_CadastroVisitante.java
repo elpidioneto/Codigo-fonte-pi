@@ -10,13 +10,10 @@ import br.iesb.meuprograma.entidades.Visitante;
 import br.iesb.meuprograma.negocio.NegocioException;
 import br.iesb.meuprograma.negocio.UnidadeBO;
 import br.iesb.meuprograma.negocio.VisitanteBO;
-import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -214,21 +211,28 @@ public class JDialogPortaria_CadastroVisitante extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        Visitante visitante=new Visitante();
+        //captura e formata a data atual para ser aceita no banco de dados.
+        Date data = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dataTx = sdf.format(data);
+        Visitante visitante = new Visitante();
         visitante.setNome(jTextFieldNome.getText());
         visitante.setCpf(jFormattedTextFieldCPF.getText());
         visitante.setRg(jFormattedTextFieldRG.getText());
+        visitante.setBloco((String) jComboBoxBloco.getSelectedItem());
+        visitante.setUnidade((String) jComboBoxUnidade.getSelectedItem());
         visitante.setTipoVisita((String) jComboBoxSelVisita.getSelectedItem());
-             
-        VisitanteBO bo= new VisitanteBO();
-       try{
+        visitante.setDataHoraEntrada(dataTx);
+
+        VisitanteBO bo = new VisitanteBO();
+        try {
             bo.inserir(visitante);
             JOptionPane.showMessageDialog(this, "Visitante registrado com Sucesso!",
                     "Informação", JOptionPane.INFORMATION_MESSAGE);
             dispose();
-        }catch(NegocioException e){
-        JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO",
-                JOptionPane.WARNING_MESSAGE);
+        } catch (NegocioException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO",
+                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
@@ -238,9 +242,9 @@ public class JDialogPortaria_CadastroVisitante extends javax.swing.JDialog {
         UnidadeBO uniBO = new UnidadeBO();
         try {
             for (Unidade unidade : uniBO.listar()) {
-                
+
                 jComboBoxBloco.addItem(unidade.getBloco());
-                
+
             }
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "ERRO",
