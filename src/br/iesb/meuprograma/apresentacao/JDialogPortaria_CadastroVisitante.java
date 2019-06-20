@@ -5,12 +5,16 @@
  */
 package br.iesb.meuprograma.apresentacao;
 
+import br.iesb.meuprograma.entidades.Unidade;
 import br.iesb.meuprograma.entidades.Visitante;
 import br.iesb.meuprograma.negocio.NegocioException;
+import br.iesb.meuprograma.negocio.UnidadeBO;
 import br.iesb.meuprograma.negocio.VisitanteBO;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -40,8 +44,6 @@ public class JDialogPortaria_CadastroVisitante extends javax.swing.JDialog {
 
         jPanelPrincipal = new javax.swing.JPanel();
         jLabelNome = new javax.swing.JLabel();
-        jLabelDtEntrada = new javax.swing.JLabel();
-        jFormattedTextFieldDtEntrada = new javax.swing.JFormattedTextField();
         jLabelTipoVisita = new javax.swing.JLabel();
         jComboBoxSelVisita = new javax.swing.JComboBox<>();
         jTextFieldNome = new javax.swing.JTextField();
@@ -51,22 +53,20 @@ public class JDialogPortaria_CadastroVisitante extends javax.swing.JDialog {
         jFormattedTextFieldRG = new javax.swing.JFormattedTextField();
         jLabelCPF = new javax.swing.JLabel();
         jFormattedTextFieldCPF = new javax.swing.JFormattedTextField();
-        jLabelDtEntrada1 = new javax.swing.JLabel();
-        jFormattedTextFieldHrEntrada = new javax.swing.JFormattedTextField();
+        jLabelBloco = new javax.swing.JLabel();
+        jComboBoxBloco = new javax.swing.JComboBox<>();
+        jLabelUnidade = new javax.swing.JLabel();
+        jComboBoxUnidade = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Visitantes");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabelNome.setText("Nome:");
-
-        jLabelDtEntrada.setText("Data Entrata:");
-
-        try {
-            jFormattedTextFieldDtEntrada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextFieldDtEntrada.setText("dd  /MM  /aaaa    ");
 
         jLabelTipoVisita.setText("Tipo de Visita:");
 
@@ -102,13 +102,15 @@ public class JDialogPortaria_CadastroVisitante extends javax.swing.JDialog {
             ex.printStackTrace();
         }
 
-        jLabelDtEntrada1.setText("Hora entrada:");
+        jLabelBloco.setText("Bloco:");
 
-        try {
-            jFormattedTextFieldHrEntrada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jComboBoxBloco.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxBlocoItemStateChanged(evt);
+            }
+        });
+
+        jLabelUnidade.setText("Unidade:");
 
         javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
@@ -118,29 +120,28 @@ public class JDialogPortaria_CadastroVisitante extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                        .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelDtEntrada)
-                            .addComponent(jLabelNome))
-                        .addGap(18, 18, 18)
+                        .addComponent(jLabelNome)
+                        .addGap(53, 53, 53)
                         .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                                 .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 101, Short.MAX_VALUE))
                             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jFormattedTextFieldRG)
-                                    .addComponent(jFormattedTextFieldDtEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
+                                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jFormattedTextFieldRG, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxBloco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelPrincipalLayout.createSequentialGroup()
+                                        .addComponent(jLabelUnidade)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jComboBoxUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                                         .addComponent(jLabelCPF)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jFormattedTextFieldCPF))
-                                    .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                                        .addComponent(jLabelDtEntrada1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jFormattedTextFieldHrEntrada)))
-                                .addGap(12, 12, 12))))
+                                        .addComponent(jFormattedTextFieldCPF)
+                                        .addGap(12, 12, 12))))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrincipalLayout.createSequentialGroup()
                         .addComponent(jButtonVoltar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -151,7 +152,8 @@ public class JDialogPortaria_CadastroVisitante extends javax.swing.JDialog {
                             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                                 .addComponent(jLabelTipoVisita)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBoxSelVisita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jComboBoxSelVisita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelBloco))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -169,13 +171,12 @@ public class JDialogPortaria_CadastroVisitante extends javax.swing.JDialog {
                     .addComponent(jLabelCPF)
                     .addComponent(jFormattedTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelBloco)
                     .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelDtEntrada1)
-                        .addComponent(jFormattedTextFieldHrEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelDtEntrada)
-                        .addComponent(jFormattedTextFieldDtEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabelUnidade)
+                        .addComponent(jComboBoxUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxBloco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTipoVisita)
@@ -218,8 +219,7 @@ public class JDialogPortaria_CadastroVisitante extends javax.swing.JDialog {
         visitante.setCpf(jFormattedTextFieldCPF.getText());
         visitante.setRg(jFormattedTextFieldRG.getText());
         visitante.setTipoVisita((String) jComboBoxSelVisita.getSelectedItem());
-        visitante.setDataEntrada(jFormattedTextFieldDtEntrada.getText());
-        visitante.setHoraEntrada(jFormattedTextFieldHrEntrada.getText());        
+             
         VisitanteBO bo= new VisitanteBO();
        try{
             bo.inserir(visitante);
@@ -231,6 +231,40 @@ public class JDialogPortaria_CadastroVisitante extends javax.swing.JDialog {
                 JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        jComboBoxBloco.addItem("");
+        UnidadeBO uniBO = new UnidadeBO();
+        try {
+            for (Unidade unidade : uniBO.listar()) {
+                
+                jComboBoxBloco.addItem(unidade.getBloco());
+                
+            }
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERRO",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jComboBoxBlocoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxBlocoItemStateChanged
+        // TODO add your handling code here:
+        UnidadeBO uniBO = new UnidadeBO();
+        jComboBoxUnidade.removeAllItems();
+        jComboBoxUnidade.addItem("");
+        try {
+            for (Unidade unidade : uniBO.listar()) {
+                Map<String, Integer> blocoUnidade = new HashMap<String, Integer>();
+                blocoUnidade.put(unidade.getBloco(), unidade.getUnidade());
+                if (blocoUnidade.containsKey(jComboBoxBloco.getSelectedItem())) {
+                    jComboBoxUnidade.addItem(unidade.getUnidade());
+
+                }
+            }
+        } catch (NegocioException ex) {
+        }
+    }//GEN-LAST:event_jComboBoxBlocoItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -277,17 +311,17 @@ public class JDialogPortaria_CadastroVisitante extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonVoltar;
+    private javax.swing.JComboBox<Object> jComboBoxBloco;
     private javax.swing.JComboBox<String> jComboBoxSelVisita;
+    private javax.swing.JComboBox<Object> jComboBoxUnidade;
     private javax.swing.JFormattedTextField jFormattedTextFieldCPF;
-    private javax.swing.JFormattedTextField jFormattedTextFieldDtEntrada;
-    private javax.swing.JFormattedTextField jFormattedTextFieldHrEntrada;
     private javax.swing.JFormattedTextField jFormattedTextFieldRG;
+    private javax.swing.JLabel jLabelBloco;
     private javax.swing.JLabel jLabelCPF;
-    private javax.swing.JLabel jLabelDtEntrada;
-    private javax.swing.JLabel jLabelDtEntrada1;
     private javax.swing.JLabel jLabelNome;
     private javax.swing.JLabel jLabelRG;
     private javax.swing.JLabel jLabelTipoVisita;
+    private javax.swing.JLabel jLabelUnidade;
     private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JTextField jTextFieldNome;
     // End of variables declaration//GEN-END:variables
