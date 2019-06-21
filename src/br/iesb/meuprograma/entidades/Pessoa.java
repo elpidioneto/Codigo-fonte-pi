@@ -6,7 +6,7 @@ import java.sql.Date;
 
 
 public class Pessoa {
-    private String nome;
+   private String nome;
     private String rg;
     private String cpf;
     private String dataNascimento;
