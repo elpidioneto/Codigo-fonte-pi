@@ -53,7 +53,7 @@ public class VisitanteBO implements BO<Visitante> {
         try {
             dao.alterar(entidade);
         } catch (DadosException ex) {
-            throw new NegocioException("" + ex);
+            throw new NegocioException("" + ex.getMessage());
         }
     }
 

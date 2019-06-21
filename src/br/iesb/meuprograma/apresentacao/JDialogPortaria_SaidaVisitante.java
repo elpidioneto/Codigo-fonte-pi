@@ -8,7 +8,11 @@ package br.iesb.meuprograma.apresentacao;
 import br.iesb.meuprograma.entidades.Visitante;
 import br.iesb.meuprograma.negocio.NegocioException;
 import br.iesb.meuprograma.negocio.VisitanteBO;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -51,6 +55,11 @@ public class JDialogPortaria_SaidaVisitante extends javax.swing.JDialog {
         jPanelBotoes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButtonMarcarSaida.setText("Marcar Saída");
+        jButtonMarcarSaida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMarcarSaidaActionPerformed(evt);
+            }
+        });
 
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -86,11 +95,11 @@ public class JDialogPortaria_SaidaVisitante extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Visitante", "Data/Hora Entrada", "Bloco", "Unidade", "Tipo de Visita", "Data/Hora Saida"
+                "Id", "Visitante", "Data/Hora Entrada", "Bloco", "Unidade", "Tipo de Visita", "Data/Hora Saida"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -117,8 +126,8 @@ public class JDialogPortaria_SaidaVisitante extends javax.swing.JDialog {
             modelo.setRowCount(0);
             List<Visitante> lista = bo.listar();
             for (Visitante visitante : lista) {
-              //  if(visitante.getDataHoraSaida().equals("")){
                 modelo.addRow(new Object[]{
+                    visitante.getId(),
                     visitante.getNome(),
                     visitante.getDataHoraEntrada(),
                     visitante.getBloco(),
@@ -126,7 +135,7 @@ public class JDialogPortaria_SaidaVisitante extends javax.swing.JDialog {
                     visitante.getTipoVisita(),
                     visitante.getDataHoraSaida()
                 });
-              //  }
+
             }
         } catch (NegocioException ex) {
             if (ex.getCause() == null) {
@@ -137,6 +146,41 @@ public class JDialogPortaria_SaidaVisitante extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void jButtonMarcarSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMarcarSaidaActionPerformed
+        // TODO add your handling code here
+        if (jTableVisitantesAtivos.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(this, "Selecione um visitante", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        int opcao = JOptionPane.showConfirmDialog(this, "Deseja Marcar saída para visitante?", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
+        if (opcao == JOptionPane.NO_OPTION) {
+            return;
+        }
+        Date data = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dataTx = sdf.format(data);
+        Visitante visitante = new Visitante();
+        visitante.setId(Integer.valueOf(jTableVisitantesAtivos.getValueAt(jTableVisitantesAtivos.getSelectedRow(), 0).toString()));
+        visitante.setDataHoraSaida(dataTx);
+
+        VisitanteBO bo = new VisitanteBO();
+
+        try {
+            bo.alterar(visitante);
+        } catch (NegocioException ex) {
+            {
+                if (ex.getCause() == null) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, ex.getCause().getMessage(), "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+            dispose();
+        }
+
+
+    }//GEN-LAST:event_jButtonMarcarSaidaActionPerformed
 
     /**
      * @param args the command line arguments

@@ -66,11 +66,17 @@ public class VisitanteDAO implements DAO<Visitante> {
         try {
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, id);
-            ResultSet resultado = comando.executeQuery();
+            ResultSet resultado = comando.executeQuery(sql);
             if (resultado.next()) {
-                visitante.setNome(resultado.getString(1));
-                visitante.setTipoVisita(resultado.getString(2));
-                visitante.setDataHoraEntrada(resultado.getString(3));
+                visitante.setId(resultado.getInt(1));
+                visitante.setDataHoraEntrada(resultado.getString(2));
+                visitante.setDataHoraSaida(resultado.getString(3));
+                visitante.setTipoVisita(resultado.getString(4));
+                visitante.setNome(resultado.getString(5));
+                visitante.setRg(resultado.getString(6));
+                visitante.setCpf(resultado.getString(7));
+                visitante.setBloco(resultado.getString(8));
+                visitante.setUnidade(resultado.getInt(9));
 
             }
         } catch (SQLException ex) {
