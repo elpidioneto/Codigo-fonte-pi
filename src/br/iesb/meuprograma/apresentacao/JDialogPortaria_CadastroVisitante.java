@@ -220,7 +220,8 @@ public class JDialogPortaria_CadastroVisitante extends javax.swing.JDialog {
         visitante.setCpf(jFormattedTextFieldCPF.getText());
         visitante.setRg(jFormattedTextFieldRG.getText());
         visitante.setBloco((String) jComboBoxBloco.getSelectedItem());
-        visitante.setUnidade((int) jComboBoxUnidade.getSelectedItem());
+        int guarda = (int) jComboBoxUnidade.getSelectedItem();
+        visitante.setUnidade(guarda);
         visitante.setTipoVisita((String) jComboBoxSelVisita.getSelectedItem());
         visitante.setDataHoraEntrada(dataTx);
 
