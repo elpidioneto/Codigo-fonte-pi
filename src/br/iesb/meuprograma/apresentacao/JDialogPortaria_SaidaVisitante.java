@@ -124,7 +124,7 @@ public class JDialogPortaria_SaidaVisitante extends javax.swing.JDialog {
         try {
             DefaultTableModel modelo = (DefaultTableModel) jTableVisitantesAtivos.getModel();
             modelo.setRowCount(0);
-            List<Visitante> lista = bo.listar();
+            List<Visitante> lista = bo.listarSaida();
             for (Visitante visitante : lista) {
                 modelo.addRow(new Object[]{
                     visitante.getId(),
@@ -162,6 +162,11 @@ public class JDialogPortaria_SaidaVisitante extends javax.swing.JDialog {
         String dataTx = sdf.format(data);
         Visitante visitante = new Visitante();
         visitante.setId(Integer.valueOf(jTableVisitantesAtivos.getValueAt(jTableVisitantesAtivos.getSelectedRow(), 0).toString()));
+        visitante.setNome(jTableVisitantesAtivos.getValueAt(jTableVisitantesAtivos.getSelectedRow(), 1).toString());
+        visitante.setDataHoraEntrada(jTableVisitantesAtivos.getValueAt(jTableVisitantesAtivos.getSelectedRow(), 2).toString());
+        visitante.setBloco(jTableVisitantesAtivos.getValueAt(jTableVisitantesAtivos.getSelectedRow(), 3).toString());
+        visitante.setUnidade(Integer.valueOf(jTableVisitantesAtivos.getValueAt(jTableVisitantesAtivos.getSelectedRow(), 4).toString()));
+        visitante.setTipoVisita(jTableVisitantesAtivos.getValueAt(jTableVisitantesAtivos.getSelectedRow(), 5).toString());
         visitante.setDataHoraSaida(dataTx);
 
         VisitanteBO bo = new VisitanteBO();
@@ -176,8 +181,8 @@ public class JDialogPortaria_SaidaVisitante extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(this, ex.getCause().getMessage(), "Aviso", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
-            dispose();
         }
+            dispose();
 
 
     }//GEN-LAST:event_jButtonMarcarSaidaActionPerformed

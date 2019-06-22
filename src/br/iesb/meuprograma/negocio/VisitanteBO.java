@@ -97,5 +97,18 @@ public class VisitanteBO implements BO<Visitante> {
         }
         return lista;
     }
+    public List<Visitante> listarSaida() throws NegocioException {
+        List<Visitante> lista = new ArrayList<Visitante>();
+        VisitanteDAO dao = new VisitanteDAO();
+        try {
+            lista = dao.listarSaida();
+            if (lista.isEmpty()) {
+                throw new NegocioException("Nenhum registro encontrado");
+            }
+        } catch (DadosException ex) {
+            throw new NegocioException("" + ex);
+        }
+        return lista;
+    }
 
 }

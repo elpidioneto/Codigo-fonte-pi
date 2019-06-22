@@ -34,10 +34,11 @@ public class VisitanteDAO implements DAO<Visitante> {
     @Override
     public void alterar(Visitante entidade) throws DadosException {
         Connection conexao = ConexaoBD.getConexao();
-        String sql = "UPDATE VISITANTE SET DATAHORASAIDA=?) WHERE ID=?";
+        String sql = "UPDATE VISITANTE SET DATAHORASAIDA=? WHERE ID=?";
         try {
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setString(1, entidade.getDataHoraSaida());
+            comando.setInt(2, entidade.getId());
 
             comando.executeUpdate();
         } catch (SQLException ex) {
@@ -62,11 +63,11 @@ public class VisitanteDAO implements DAO<Visitante> {
     public Visitante consultar(int id) throws DadosException {
         Visitante visitante = new Visitante();
         Connection conexao = ConexaoBD.getConexao();
-        String sql = "SELECT * FROM PESSOA WHERE ID=?";
+        String sql = "SELECT * FROM VISITANTE WHERE id = ?";
         try {
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, id);
-            ResultSet resultado = comando.executeQuery(sql);
+            ResultSet resultado = comando.executeQuery();
             if (resultado.next()) {
                 visitante.setId(resultado.getInt(1));
                 visitante.setDataHoraEntrada(resultado.getString(2));
@@ -80,7 +81,7 @@ public class VisitanteDAO implements DAO<Visitante> {
 
             }
         } catch (SQLException ex) {
-            throw new DadosException("Erro ao Consultar Visitante. Morivo: " + ex.getMessage());
+            throw new DadosException("Erro ao Consultar Visitante. Motivo: " + ex.getMessage());
         }
         return visitante;
     }
@@ -90,6 +91,32 @@ public class VisitanteDAO implements DAO<Visitante> {
         List<Visitante> lista = new ArrayList<Visitante>();
         Connection conexao = ConexaoBD.getConexao();
         String sql = "SELECT * FROM VISITANTE";
+        try {
+            Statement comando = conexao.createStatement();
+            ResultSet resultado = comando.executeQuery(sql);
+            while (resultado.next()) {
+                Visitante visitante = new Visitante();
+                visitante.setId(resultado.getInt(1));
+                visitante.setDataHoraEntrada(resultado.getString(2));
+                visitante.setDataHoraSaida(resultado.getString(3));
+                visitante.setTipoVisita(resultado.getString(4));
+                visitante.setNome(resultado.getString(5));
+                visitante.setRg(resultado.getString(6));
+                visitante.setCpf(resultado.getString(7));
+                visitante.setBloco(resultado.getString(8));
+                visitante.setUnidade(resultado.getInt(9));
+                lista.add(visitante);
+            }
+        } catch (SQLException ex) {
+            throw new DadosException("Erro ao Consultar Pessoa. Morivo: " + ex.getMessage());
+        }
+        return lista;
+    }
+
+    public List<Visitante> listarSaida() throws DadosException {
+        List<Visitante> lista = new ArrayList<Visitante>();
+        Connection conexao = ConexaoBD.getConexao();
+        String sql = "SELECT * FROM VISITANTE WHERE dataHoraSaida IS NULL";
         try {
             Statement comando = conexao.createStatement();
             ResultSet resultado = comando.executeQuery(sql);
