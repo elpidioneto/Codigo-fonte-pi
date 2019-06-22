@@ -1,43 +1,28 @@
-
 package br.iesb.meuprograma.entidades;
 
 import java.awt.image.BufferedImage;
-import java.sql.Date;
-
 
 public class Pessoa {
-   private String nome;
+
+    private String nome;
     private String rg;
     private String cpf;
     private String dataNascimento;
-    private Date dataCadastro;
-    private String genero;  
+    private String dataCadastro;
+    private String genero;
     private String endereco;
-    private String email;    
+    private String email;
     private String telefone;
     private String celular;
     private int Id;
     private BufferedImage foto;
     private BufferedImage biometria;
-    private String senha;
-    private String login;
+    private String bloco;
+    private int Unidade;
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
+    public Pessoa() {
     }
    
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
 
     public BufferedImage getFoto() {
         return foto;
@@ -85,7 +70,7 @@ public class Pessoa {
 
     public void setGenero(String genero) {
         this.genero = genero;
-        
+
     }
 
     public String getEndereco() {
@@ -111,7 +96,6 @@ public class Pessoa {
     public void setCelular(String celular) {
         this.celular = celular;
     }
-    
 
     public String getNome() {
         return nome;
@@ -119,8 +103,8 @@ public class Pessoa {
 
     public void setNome(String nome) {
         this.nome = "";
-        if (nome != null){
-        this.nome = nome;
+        if (nome != null) {
+            this.nome = nome;
         }
     }
 
@@ -132,11 +116,11 @@ public class Pessoa {
         this.rg = rg;
     }
 
-    public Date getDataCadastro() {
+    public String getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Date dataCadastro) {
+    public void setDataCadastro(String dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 
@@ -147,5 +131,21 @@ public class Pessoa {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    
+
+    public String getBloco() {
+        return bloco;
+    }
+
+    public void setBloco(String bloco) {
+        this.bloco = bloco;
+    }
+
+    public int getUnidade() {
+        return Unidade;
+    }
+
+    public void setUnidade(int Unidade) {
+        this.Unidade = Unidade;
+    }
+
 }

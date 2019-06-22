@@ -34,10 +34,7 @@ public class PessoaBO implements BO<Pessoa> {
       }
       if (entidade.getGenero()==null){
           throw new NegocioException("Campo Genero é Obrigatório!");
-      }
-        if(entidade.getSenha().equals("")){
-          throw new NegocioException("Campo Senha é Obrigatório!");
-      }
+      }      
       
     }
 

@@ -24,18 +24,20 @@ public class PessoaDAO implements DAO<Pessoa> {
     @Override
     public void inserir(Pessoa entidade) throws DadosException {
         Connection conexao= ConexaoBD.getConexao();
-       String sql = "INSERT INTO PESSOA (NOME, RG, CPF, DATANASCIMENTO, DATACADASTRO, GENERO,EMAIL, TELEFONE,CELULAR) VALUES(?,?,?,?,?,?,?,?,?)" ;
+       String sql = "INSERT INTO PESSOA (NOME, RG, CPF, DATANASCIMENTO, DATACADASTRO, GENERO,EMAIL, TELEFONE,CELULAR,BLOCO,UNIDADE) VALUES(?,?,?,?,?,?,?,?,?,?,?)" ;
        try{
        	PreparedStatement comando = conexao.prepareStatement(sql);
        	comando.setString(1, entidade.getNome());
        	comando.setString(2,entidade.getRg());
        	comando.setString(3,entidade.getCpf());
        	comando.setString(4,entidade.getDataNascimento());
-       	comando.setDate(5,entidade.getDataCadastro());
+       	comando.setString(5,entidade.getDataCadastro());
        	comando.setString(6,entidade.getGenero());
        	comando.setString(7,entidade.getEndereco());
        	comando.setString(8,entidade.getEmail());
        	comando.setString(9,entidade.getCelular());
+        comando.setString(10, entidade.getBloco());
+        comando.setInt(11, entidade.getUnidade());
        	comando.executeUpdate();
        }catch(SQLException ex){
        	throw new DadosException("Erro ao inserir Pessoa. Motivo: " + ex.getMessage());
@@ -45,14 +47,14 @@ public class PessoaDAO implements DAO<Pessoa> {
     @Override
     public void alterar(Pessoa entidade) throws DadosException {
         Connection conexao = ConexaoBD.getConexao();
-       String sql = "UPDATE PESSOA SET NOME=?, RG=?, CPF=?, DATANASCIMENTO=?, DATACADASTRO=?, GENERO=?,EMAIL=?, TELEFONE=?,CELULAR=?) WHERE ID=?";
+       String sql = "UPDATE PESSOA SET NOME=?, RG=?, CPF=?, DATANASCIMENTO=?, DATACADASTRO=?,ENDERECO=? GENERO=?,EMAIL=?, TELEFONE=?,CELULAR=?,BLOCO=?,UNIDADE=?) WHERE ID=?";
        try{
        	PreparedStatement comando = conexao.prepareStatement(sql);
        	comando.setString(1, entidade.getNome());
        	comando.setString(2,entidade.getRg());
        	comando.setString(3,entidade.getCpf());
        	comando.setString(4,entidade.getDataNascimento());
-       	comando.setDate(5,entidade.getDataCadastro());
+       	comando.setString(5,entidade.getDataCadastro());
        	comando.setString(6,entidade.getGenero());
        	comando.setString(7,entidade.getEndereco());
        	comando.setString(8,entidade.getEmail());
@@ -91,7 +93,7 @@ public class PessoaDAO implements DAO<Pessoa> {
        	pessoa.setRg(resultado.getString(2));
        	pessoa.setCpf(resultado.getString(3));
        	pessoa.setDataNascimento(resultado.getString(4));
-       	pessoa.setDataCadastro(resultado.getDate(5));
+       	pessoa.setDataCadastro(resultado.getString(5));
        	pessoa.setGenero(resultado.getString(6));
        	pessoa.setEndereco(resultado.getString(7));
        	pessoa.setEmail(resultado.getString(8));
@@ -117,7 +119,7 @@ public class PessoaDAO implements DAO<Pessoa> {
        	pessoa.setRg(resultado.getString(2));
        	pessoa.setCpf(resultado.getString(3));
        	pessoa.setDataNascimento(resultado.getString(4));
-       	pessoa.setDataCadastro(resultado.getDate(5));
+       	pessoa.setDataCadastro(resultado.getString(5));
        	pessoa.setGenero(resultado.getString(6));
        	pessoa.setEndereco(resultado.getString(7));
        	pessoa.setEmail(resultado.getString(8));
