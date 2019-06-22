@@ -5,6 +5,7 @@
  */
 package br.iesb.meuprograma.apresentacao;
 
+import br.iesb.meuprograma.dados.PessoaDAO;
 import br.iesb.meuprograma.entidades.EsqueciASenha;
 import br.iesb.meuprograma.negocio.EsqueciASenhaBO;
 import br.iesb.meuprograma.negocio.NegocioException;
@@ -107,17 +108,14 @@ public class JDialogEsqueciASenha extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-       EsqueciASenha esqueci = new EsqueciASenha();
- 
-esqueci.setEmail(txtEmail.getText());
- 
-EsqueciASenhaBO bo = new EsqueciASenhaBO();
-try {  
-bo.inserir(esqueci);
- //dispose();
-}
-catch (NegocioException e) 
-{JOptionPane.showMessageDialog(rootPane,e.getMessage(),"Aviso",JOptionPane.WARNING_MESSAGE);}
+       PessoaDAO dao = new PessoaDAO();
+       
+       if(dao.checkEmail(txtEmail.getText())){
+           JOptionPane.showMessageDialog(null, "Email enviado com sucesso!");
+           this.dispose();
+       }else{
+           JOptionPane.showMessageDialog(null, "Email Incorreto!");
+       }
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
