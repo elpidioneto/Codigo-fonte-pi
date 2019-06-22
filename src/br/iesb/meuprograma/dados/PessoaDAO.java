@@ -14,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -128,6 +130,38 @@ public class PessoaDAO implements DAO<Pessoa> {
             throw new DadosException("Erro ao Consultar Pessoa. Morivo: " + ex.getMessage());
         }
         return lista;
+    }
+    
+     public boolean checkEmail(String email) {
+
+        Connection con = ConexaoBD.getConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        boolean check = false;
+
+        try {
+
+            stmt = con.prepareStatement("SELECT * FROM pessoa WHERE email = ?");
+            stmt.setString(1, email);
+           
+
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+
+                
+                check = true;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConexaoBD.closeConnection(con, stmt, rs);
+        }
+
+        return check;
+
     }
     
 }
