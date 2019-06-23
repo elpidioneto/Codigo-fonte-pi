@@ -40,6 +40,12 @@ public class PessoaBO implements BO<Pessoa> {
         if (entidade.getTipo().equals("Selecione o Tipo")) {
             throw new NegocioException("Selecione o tipo de morador!");
         }
+        if (entidade.getUnidade() == 0) {
+            throw new NegocioException("Selecione a unidade");
+        }
+        if (entidade.getBloco().isEmpty()) {
+            throw new NegocioException("Selecione o bloco");
+        }
 
     }
 
