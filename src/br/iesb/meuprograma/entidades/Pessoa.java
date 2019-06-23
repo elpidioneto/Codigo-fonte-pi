@@ -14,31 +14,22 @@ public class Pessoa {
     private String email;
     private String telefone;
     private String celular;
-    private int Id;
-    private BufferedImage foto;
-    private BufferedImage biometria;
+    private int Id;    
     private String bloco;
-    private int Unidade;
+    private int unidade;
+    private String morador;
+    private String tipo;
+
+    public String getMorador() {
+        return morador;
+    }
+
+    public void setMorador(String morador) {
+        this.morador = morador;
+    }
 
     public Pessoa() {
-    }
-   
-
-    public BufferedImage getFoto() {
-        return foto;
-    }
-
-    public void setFoto(BufferedImage foto) {
-        this.foto = foto;
-    }
-
-    public BufferedImage getBiometria() {
-        return biometria;
-    }
-
-    public void setBiometria(BufferedImage biometria) {
-        this.biometria = biometria;
-    }
+    }   
 
     public int getId() {
         return Id;
@@ -141,11 +132,19 @@ public class Pessoa {
     }
 
     public int getUnidade() {
-        return Unidade;
+        return unidade;
     }
 
     public void setUnidade(int Unidade) {
-        this.Unidade = Unidade;
+        this.unidade = Unidade;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
 }

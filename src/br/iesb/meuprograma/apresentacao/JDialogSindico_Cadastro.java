@@ -7,19 +7,14 @@ package br.iesb.meuprograma.apresentacao;
 
 import br.iesb.meuprograma.entidades.Pessoa;
 import br.iesb.meuprograma.entidades.Unidade;
-import br.iesb.meuprograma.negocio.ValidarImagem;
 import br.iesb.meuprograma.negocio.NegocioException;
 import br.iesb.meuprograma.negocio.PessoaBO;
 import br.iesb.meuprograma.negocio.UnidadeBO;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class JDialogSindico_Cadastro extends javax.swing.JDialog {
 
@@ -44,8 +39,6 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
         jLabelEndereco = new javax.swing.JLabel();
         jLabelTelefone = new javax.swing.JLabel();
         jLabelEmail = new javax.swing.JLabel();
-        jLabelBiometria = new javax.swing.JLabel();
-        jLabelFoto = new javax.swing.JLabel();
         jFormattedTextFieldCPF = new javax.swing.JFormattedTextField();
         jTextFieldNome = new javax.swing.JTextField();
         jLabelRG = new javax.swing.JLabel();
@@ -55,8 +48,6 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
         jRadioButtonFem = new javax.swing.JRadioButton();
         jTextFieldEndereco = new javax.swing.JTextField();
         jTextFieldEmail = new javax.swing.JTextField();
-        jButtonBiometriaBusca = new javax.swing.JButton();
-        jButtonFotoBusca = new javax.swing.JButton();
         jButtonCadastrar = new javax.swing.JButton();
         jButtonVoltar = new javax.swing.JButton();
         jFormattedTextFieldTelefone = new javax.swing.JFormattedTextField();
@@ -70,7 +61,6 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
         jLabelMorador = new javax.swing.JLabel();
         jComboBoxMorador = new javax.swing.JComboBox<>();
         jButtonIncluir_Unidade = new javax.swing.JButton();
-        jButtonIncluir_EndCorrespondencia = new javax.swing.JButton();
         jLabelCelular = new javax.swing.JLabel();
         jFormattedTextFieldCelular = new javax.swing.JFormattedTextField();
 
@@ -97,10 +87,6 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
         jLabelTelefone.setText("Telefone:");
 
         jLabelEmail.setText("Email:");
-
-        jLabelBiometria.setText("Biometria:");
-
-        jLabelFoto.setText("Foto:");
 
         try {
             jFormattedTextFieldCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -136,20 +122,6 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
         jRadioButtonFem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jRadioButtonFemMouseClicked(evt);
-            }
-        });
-
-        jButtonBiometriaBusca.setText("Buscar");
-        jButtonBiometriaBusca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBiometriaBuscaActionPerformed(evt);
-            }
-        });
-
-        jButtonFotoBusca.setText("Upload/Buscar");
-        jButtonFotoBusca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFotoBuscaActionPerformed(evt);
             }
         });
 
@@ -191,7 +163,7 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
 
         jLabelMorador.setText("Morador:");
 
-        jComboBoxMorador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SIM", "NÃO" }));
+        jComboBoxMorador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "***", "SIM", "NÃO" }));
 
         jButtonIncluir_Unidade.setText("Incluir Unidade");
         jButtonIncluir_Unidade.addActionListener(new java.awt.event.ActionListener() {
@@ -199,8 +171,6 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
                 jButtonIncluir_UnidadeActionPerformed(evt);
             }
         });
-
-        jButtonIncluir_EndCorrespondencia.setText("Incluir Endereço de Correspondencia");
 
         javax.swing.GroupLayout jPanelCadastroUnidadeLayout = new javax.swing.GroupLayout(jPanelCadastroUnidade);
         jPanelCadastroUnidade.setLayout(jPanelCadastroUnidadeLayout);
@@ -224,36 +194,33 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
                 .addGroup(jPanelCadastroUnidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBoxMorador, 0, 68, Short.MAX_VALUE)
                     .addComponent(jComboBoxUnidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(43, 43, 43)
-                .addGroup(jPanelCadastroUnidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonIncluir_EndCorrespondencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonIncluir_Unidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 38, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonIncluir_Unidade, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
         jPanelCadastroUnidadeLayout.setVerticalGroup(
             jPanelCadastroUnidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCadastroUnidadeLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanelCadastroUnidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelCadastroUnidadeLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jButtonIncluir_EndCorrespondencia))
-                    .addGroup(jPanelCadastroUnidadeLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanelCadastroUnidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelCadastroUnidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabelBloco)
                                 .addComponent(jComboBoxBloco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCadastroUnidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabelUnidade)
-                                .addComponent(jComboBoxUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButtonIncluir_Unidade)))
+                                .addComponent(jComboBoxUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelCadastroUnidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelTipo)
                             .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelMorador)
-                            .addComponent(jComboBoxMorador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jComboBoxMorador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelCadastroUnidadeLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jButtonIncluir_Unidade)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jLabelCelular.setText("Celular:");
@@ -271,11 +238,6 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                        .addComponent(jButtonVoltar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCadastrar)
-                        .addContainerGap())
                     .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                         .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelNome)
@@ -304,39 +266,37 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
                                     .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                                         .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                                                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabelCelular)
-                                                    .addComponent(jLabelFoto))
+                                                .addComponent(jLabelCelular)
                                                 .addGap(66, 66, 66)
-                                                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jButtonFotoBusca)
-                                                    .addComponent(jFormattedTextFieldCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(jFormattedTextFieldCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                                                 .addComponent(jLabelEmail)
                                                 .addGap(73, 73, 73)
                                                 .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addContainerGap(34, Short.MAX_VALUE))))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrincipalLayout.createSequentialGroup()
-                        .addComponent(jPanelCadastroUnidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
                     .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                         .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelCPF)
-                                    .addComponent(jLabelEndereco))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFormattedTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabelBiometria)
+                                .addComponent(jButtonVoltar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonCadastrar))
+                            .addComponent(jPanelCadastroUnidade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                                .addGap(108, 108, 108)
                                 .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonBiometriaBusca)
-                                    .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addGroup(jPanelPrincipalLayout.createSequentialGroup()
+                                        .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelCPF)
+                                            .addComponent(jLabelEndereco))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jFormattedTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextFieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanelPrincipalLayout.createSequentialGroup()
+                                        .addGap(108, 108, 108)
+                                        .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         jPanelPrincipalLayout.setVerticalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,13 +332,7 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
                     .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelCelular)
                     .addComponent(jFormattedTextFieldCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelBiometria)
-                    .addComponent(jButtonBiometriaBusca)
-                    .addComponent(jLabelFoto)
-                    .addComponent(jButtonFotoBusca))
-                .addGap(4, 4, 4)
+                .addGap(45, 45, 45)
                 .addComponent(jPanelCadastroUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -429,6 +383,8 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
         pessoa.setDataCadastro(dataAtual);//guarda a data de cadastro.
         pessoa.setBloco((String) jComboBoxBloco.getSelectedItem());
         pessoa.setUnidade((int) jComboBoxUnidade.getSelectedItem());
+        pessoa.setMorador((String)jComboBoxMorador.getSelectedItem());
+        pessoa.setTipo((String)jComboBoxTipo.getSelectedItem());
 
         //Inclusão do usuário e teste de validação
         PessoaBO bo = new PessoaBO();
@@ -450,31 +406,6 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
     private void jRadioButtonFemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButtonFemMouseClicked
 
     }//GEN-LAST:event_jRadioButtonFemMouseClicked
-
-    private void jButtonFotoBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFotoBuscaActionPerformed
-        Pessoa pessoa = new Pessoa();
-        ValidarImagem vi = new ValidarImagem();
-        BufferedImage bi;
-        JFileChooser fc = new JFileChooser();
-        fc.setFileFilter(new FileNameExtensionFilter("Arquivo *.jpg", "jpg"));
-        int dlg = fc.showOpenDialog(null);
-        File arquivo = fc.getSelectedFile();
-        bi = vi.validarImagem(dlg, arquivo);
-        pessoa.setFoto(bi);
-    }//GEN-LAST:event_jButtonFotoBuscaActionPerformed
-
-    private void jButtonBiometriaBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBiometriaBuscaActionPerformed
-        Pessoa pessoa = new Pessoa();
-        ValidarImagem vi = new ValidarImagem();
-        BufferedImage bi;
-        JFileChooser fc = new JFileChooser();
-        fc.setFileFilter(new FileNameExtensionFilter("Arquivo *.jpg", "jpg"));
-        int dlg = fc.showOpenDialog(null);
-        File arquivo = fc.getSelectedFile();
-        bi = vi.validarImagem(dlg, arquivo);
-        pessoa.setBiometria(bi);
-
-    }//GEN-LAST:event_jButtonBiometriaBuscaActionPerformed
 
     private void jButtonIncluir_UnidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluir_UnidadeActionPerformed
         // TODO add your handling code here:
@@ -561,10 +492,7 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupGenero;
-    private javax.swing.JButton jButtonBiometriaBusca;
     private javax.swing.JButton jButtonCadastrar;
-    private javax.swing.JButton jButtonFotoBusca;
-    private javax.swing.JButton jButtonIncluir_EndCorrespondencia;
     private javax.swing.JButton jButtonIncluir_Unidade;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<Object> jComboBoxBloco;
@@ -576,14 +504,12 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField jFormattedTextFieldDtNasc;
     private javax.swing.JFormattedTextField jFormattedTextFieldRG;
     private javax.swing.JFormattedTextField jFormattedTextFieldTelefone;
-    private javax.swing.JLabel jLabelBiometria;
     private javax.swing.JLabel jLabelBloco;
     private javax.swing.JLabel jLabelCPF;
     private javax.swing.JLabel jLabelCelular;
     private javax.swing.JLabel jLabelDtNasc;
     private javax.swing.JLabel jLabelEmail;
     private javax.swing.JLabel jLabelEndereco;
-    private javax.swing.JLabel jLabelFoto;
     private javax.swing.JLabel jLabelGenero;
     private javax.swing.JLabel jLabelMorador;
     private javax.swing.JLabel jLabelNome;
