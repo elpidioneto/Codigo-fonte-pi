@@ -41,7 +41,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiCorrespondenciaActionPerformed"/>
               </Events>
             </MenuItem>
-            <Menu class="javax.swing.JMenu" name="jMenu1">
+            <Menu class="javax.swing.JMenu" name="jMenuVisitante">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Visitantes"/>
               </Properties>
@@ -56,7 +56,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItemListarVisitante">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Listagem"/>
+                    <Property name="text" type="java.lang.String" value="Listar Visitante"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemListarVisitanteActionPerformed"/>

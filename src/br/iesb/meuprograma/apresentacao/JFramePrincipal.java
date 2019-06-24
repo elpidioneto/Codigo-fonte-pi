@@ -29,7 +29,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jmiSair = new javax.swing.JMenuItem();
         jmPortaria = new javax.swing.JMenu();
         jmiCorrespondencia = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        jMenuVisitante = new javax.swing.JMenu();
         jMenuItemCriarVisitante = new javax.swing.JMenuItem();
         jMenuItemListarVisitante = new javax.swing.JMenuItem();
         jMenuItemSaídaVisitante = new javax.swing.JMenuItem();
@@ -101,7 +101,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jmPortaria.add(jmiCorrespondencia);
 
-        jMenu1.setText("Visitantes");
+        jMenuVisitante.setText("Visitantes");
 
         jMenuItemCriarVisitante.setText("Cadastro");
         jMenuItemCriarVisitante.addActionListener(new java.awt.event.ActionListener() {
@@ -109,15 +109,15 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 jMenuItemCriarVisitanteActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItemCriarVisitante);
+        jMenuVisitante.add(jMenuItemCriarVisitante);
 
-        jMenuItemListarVisitante.setText("Listagem");
+        jMenuItemListarVisitante.setText("Listar Visitante");
         jMenuItemListarVisitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemListarVisitanteActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItemListarVisitante);
+        jMenuVisitante.add(jMenuItemListarVisitante);
 
         jMenuItemSaídaVisitante.setText("Saída");
         jMenuItemSaídaVisitante.addActionListener(new java.awt.event.ActionListener() {
@@ -125,9 +125,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 jMenuItemSaídaVisitanteActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItemSaídaVisitante);
+        jMenuVisitante.add(jMenuItemSaídaVisitante);
 
-        jmPortaria.add(jMenu1);
+        jmPortaria.add(jMenuVisitante);
 
         jMenuBarPrincipal.add(jmPortaria);
 
@@ -434,7 +434,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnMostra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenuAjuda;
     private javax.swing.JMenuBar jMenuBarPrincipal;
     private javax.swing.JMenuItem jMenuItemConsultarCadastro;
@@ -442,6 +441,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemListarVisitante;
     private javax.swing.JMenuItem jMenuItemSaídaVisitante;
     private javax.swing.JMenuItem jMenuItemSobre;
+    private javax.swing.JMenu jMenuVisitante;
     private javax.swing.JComboBox<String> jcbPerfil;
     private javax.swing.JMenu jmAdministracao;
     private javax.swing.JMenu jmArquivo;
