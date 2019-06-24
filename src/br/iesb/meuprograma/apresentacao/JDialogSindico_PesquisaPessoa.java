@@ -102,6 +102,16 @@ public class JDialogSindico_PesquisaPessoa extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        jTableListar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableListarMouseClicked(evt);
+            }
+        });
+        jTableListar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTableListarKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableListar);
 
         javax.swing.GroupLayout jPanelTabelaLayout = new javax.swing.GroupLayout(jPanelTabela);
@@ -327,7 +337,7 @@ public class JDialogSindico_PesquisaPessoa extends javax.swing.JDialog {
         }
         int opcao = JOptionPane.showConfirmDialog(this, "Deseja excluir a pessoa?",
                 "Confirmação", JOptionPane.INFORMATION_MESSAGE);
-        if (opcao == JOptionPane.NO_OPTION) {
+        if (opcao == JOptionPane.NO_OPTION || opcao == JOptionPane.CANCEL_OPTION) {
             return;
         }
 
@@ -361,7 +371,7 @@ public class JDialogSindico_PesquisaPessoa extends javax.swing.JDialog {
         }
         int opcao = JOptionPane.showConfirmDialog(this, "Deseja editar esta pessoa?",
                 "Confirmação", JOptionPane.INFORMATION_MESSAGE);
-        if (opcao == JOptionPane.NO_OPTION) {
+        if (opcao == JOptionPane.NO_OPTION || opcao == JOptionPane.CANCEL_OPTION) {
             return;
         }
         Pessoa pessoa = new Pessoa();
@@ -373,6 +383,7 @@ public class JDialogSindico_PesquisaPessoa extends javax.swing.JDialog {
             JDialogSindico_Cadastro dialogo = new JDialogSindico_Cadastro((Frame) this.getParent(), true);
             dialogo.editar(pessoa);
             dialogo.setVisible(true);
+            formWindowOpened(null);
             
         } catch (NegocioException ex) {
             
@@ -381,6 +392,18 @@ public class JDialogSindico_PesquisaPessoa extends javax.swing.JDialog {
          else JOptionPane.showMessageDialog(rootPane,ex.getCause(),"Aviso",JOptionPane.INFORMATION_MESSAGE); ;
         }
     }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jTableListarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListarMouseClicked
+        if(evt.getClickCount()==2){
+        jButtonEditarActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTableListarMouseClicked
+
+    private void jTableListarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableListarKeyPressed
+        if(evt.getKeyCode()== java.awt.event.KeyEvent.VK_DELETE){
+            jButtonExcluirActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTableListarKeyPressed
 
     /**
      * @param args the command line arguments

@@ -14,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
 
 public class JDialogSindico_Cadastro extends javax.swing.JDialog {
@@ -25,6 +24,29 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
     public JDialogSindico_Cadastro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+    Pessoa pessoa = new Pessoa();
+    
+    public void editar(Pessoa entidade) {
+        jTextFieldNome.setText(entidade.getNome());
+        jFormattedTextFieldCPF.setText(entidade.getCpf());
+        jFormattedTextFieldRG.setText(entidade.getRg());
+        jFormattedTextFieldDtNasc.setText(entidade.getDataNascimento());
+        jFormattedTextFieldTelefone.setText(entidade.getTelefone());
+        jFormattedTextFieldCelular.setText(entidade.getCelular());
+        jTextFieldEndereco.setText(entidade.getEndereco());
+        jTextFieldEmail.setText(entidade.getEmail());
+        
+        if (entidade.getGenero().equals("Masculino"))jRadioButtonMasc.setSelected(true);        
+        if (entidade.getGenero().equals("Feminino"))jRadioButtonFem.setSelected(true);
+      
+        jComboBoxBloco.getModel().setSelectedItem(entidade.getBloco());
+        jComboBoxUnidade.getModel().setSelectedItem(entidade.getUnidade());
+        jComboBoxMorador.getModel().setSelectedItem(entidade.getMorador());
+        jComboBoxTipo.getModel().setSelectedItem(entidade.getTipo());
+        
+        pessoa.setId(entidade.getId());
+        
     }
     
     @SuppressWarnings("unchecked")
@@ -64,7 +86,6 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
         jButtonIncluir_Unidade = new javax.swing.JButton();
         jLabelCelular = new javax.swing.JLabel();
         jFormattedTextFieldCelular = new javax.swing.JFormattedTextField();
-        jButtonAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Perfil");
@@ -233,13 +254,6 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
             ex.printStackTrace();
         }
 
-        jButtonAlterar.setText("Alterar");
-        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAlterarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
         jPanelPrincipalLayout.setHorizontalGroup(
@@ -288,8 +302,6 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
                             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                                 .addComponent(jButtonVoltar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonAlterar)
-                                .addGap(18, 18, 18)
                                 .addComponent(jButtonCadastrar))
                             .addComponent(jPanelCadastroUnidade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
@@ -348,8 +360,7 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonVoltar)
-                    .addComponent(jButtonCadastrar)
-                    .addComponent(jButtonAlterar))
+                    .addComponent(jButtonCadastrar))
                 .addContainerGap())
         );
 
@@ -374,7 +385,7 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         //Coleta de dados do formulário
-        Pessoa pessoa= new Pessoa();
+        
         pessoa.setNome(jTextFieldNome.getText());
         pessoa.setDataNascimento(jFormattedTextFieldDtNasc.getText());
         pessoa.setCpf(jFormattedTextFieldCPF.getText());
@@ -395,20 +406,22 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
         pessoa.setDataCadastro(dataAtual);//guarda a data de cadastro.
         pessoa.setBloco((String) jComboBoxBloco.getSelectedItem());
         pessoa.setUnidade((int) jComboBoxUnidade.getSelectedItem());
-        pessoa.setMorador((String)jComboBoxMorador.getSelectedItem());
-        pessoa.setTipo((String)jComboBoxTipo.getSelectedItem());
+        pessoa.setMorador((String) jComboBoxMorador.getSelectedItem());
+        pessoa.setTipo((String) jComboBoxTipo.getSelectedItem());
+        
+        
 
         //Inclusão do usuário e teste de validação
         PessoaBO bo = new PessoaBO();
-        try {                        
-            if(pessoa.getId() == 0){
-            bo.inserir(pessoa);
-            JOptionPane.showMessageDialog(this, "Usuário Incluido com Sucesso!",
-                    "Informação", JOptionPane.INFORMATION_MESSAGE);
-            }else{
+        try {            
+            if (pessoa.getId() == 0) {
+                bo.inserir(pessoa);
+                JOptionPane.showMessageDialog(this, "Usuário Incluido com Sucesso!",
+                        "Informação", JOptionPane.INFORMATION_MESSAGE);
+            } else {
                 bo.alterar(pessoa);
                 JOptionPane.showMessageDialog(this, "Usuário Alterado com Sucesso!",
-                    "Informação", JOptionPane.INFORMATION_MESSAGE);
+                        "Informação", JOptionPane.INFORMATION_MESSAGE);
             }
             dispose();
         } catch (NegocioException e) {
@@ -437,9 +450,9 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
         UnidadeBO uniBO = new UnidadeBO();
         try {
             for (Unidade unidade : uniBO.listar()) {
-
+                
                 jComboBoxBloco.addItem(unidade.getBloco());
-
+                
             }
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "ERRO",
@@ -458,16 +471,12 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
                 blocoUnidade.put(unidade.getBloco(), unidade.getUnidade());
                 if (blocoUnidade.containsKey(jComboBoxBloco.getSelectedItem())) {
                     jComboBoxUnidade.addItem(unidade.getUnidade());
-
+                    
                 }
             }
         } catch (NegocioException ex) {
         }
     }//GEN-LAST:event_jComboBoxBlocoItemStateChanged
-
-    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -511,29 +520,10 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
             }
         });
     }
-    public void editar(Pessoa pessoa){
-        jTextFieldNome.setText(pessoa.getNome());
-        jFormattedTextFieldCPF.setText(pessoa.getCpf());
-        jFormattedTextFieldRG.setText(pessoa.getRg());
-        jFormattedTextFieldDtNasc.setText(pessoa.getDataNascimento());
-        jFormattedTextFieldTelefone.setText(pessoa.getTelefone());
-        jFormattedTextFieldCelular.setText(pessoa.getCelular());
-        jTextFieldEndereco.setText(pessoa.getEndereco());
-        jTextFieldEmail.setText(pessoa.getEmail());
-        if(pessoa.getGenero().equals("Masculino"))jRadioButtonMasc.setSelected(true);
-        if(pessoa.getGenero().equals("Feminino"))jRadioButtonFem.setSelected(true);
-        jComboBoxBloco.getModel().setSelectedItem(pessoa.getBloco());
-        jComboBoxUnidade.getModel().setSelectedItem(pessoa.getUnidade());
-        jComboBoxMorador.getModel().setSelectedItem(pessoa.getMorador());
-        jComboBoxTipo.getModel().setSelectedItem(pessoa.getTipo());
-        
-        jButtonCadastrar.setVisible(false);
-        
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupGenero;
-    private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonIncluir_Unidade;
     private javax.swing.JButton jButtonVoltar;

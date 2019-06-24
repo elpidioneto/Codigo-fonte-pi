@@ -406,7 +406,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jMenuItemConsultarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConsultarCadastroActionPerformed
         // TODO add your handling code here:
-        JDialogSindico_EditarCadastro editarCadastro = new JDialogSindico_EditarCadastro(new javax.swing.JFrame(), true);
+        JDialogSindico_PesquisaPessoa editarCadastro = new JDialogSindico_PesquisaPessoa(new javax.swing.JFrame(), true);
         editarCadastro.setVisible(true);
     }//GEN-LAST:event_jMenuItemConsultarCadastroActionPerformed
 

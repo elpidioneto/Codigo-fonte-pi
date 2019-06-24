@@ -110,8 +110,6 @@
                               <Group type="102" attributes="0">
                                   <Component id="jButtonVoltar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jButtonAlterar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jButtonCadastrar" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jPanelCadastroUnidade" alignment="1" max="32767" attributes="0"/>
@@ -190,7 +188,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonVoltar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButtonAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -480,14 +477,6 @@
               <Format format="(##)#####-####" subtype="-1" type="5"/>
             </Property>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButtonAlterar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Alterar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAlterarActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

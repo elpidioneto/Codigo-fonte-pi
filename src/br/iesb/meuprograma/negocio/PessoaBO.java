@@ -68,7 +68,7 @@ public class PessoaBO implements BO<Pessoa> {
         try {
             dao.alterar(entidade);
         } catch (DadosException ex) {
-            throw new NegocioException("", ex);
+            throw new NegocioException("Erro ao alterar "+ex.getMessage(), ex);
         }
     }
 
@@ -93,7 +93,7 @@ public class PessoaBO implements BO<Pessoa> {
                 throw new NegocioException("Pessoa não encontrada");
             }
         } catch (DadosException ex) {
-            throw new NegocioException("", ex);
+            throw new NegocioException("Erro ao consultar "+ ex.getMessage(), ex);
         }
         return pessoa;
     }
@@ -108,7 +108,7 @@ public class PessoaBO implements BO<Pessoa> {
                 throw new NegocioException("Nenhuma Pessoa encontrada");
             }
         } catch (DadosException ex) {
-            throw new NegocioException("", ex);
+            throw new NegocioException(ex.getMessage(), ex);
         }
         return lista;
     }

@@ -71,6 +71,7 @@ public class PessoaDAO implements DAO<Pessoa> {
             comando.setString(12, entidade.getDataCadastro());
             comando.setString(13, entidade.getMorador());
             comando.setString(14, entidade.getTipo());
+            comando.setInt(15, entidade.getId());
             comando.executeUpdate();
         } catch (SQLException ex) {
             throw new DadosException("Erro ao alterar Pessoa. Morivo: " + ex.getMessage());
