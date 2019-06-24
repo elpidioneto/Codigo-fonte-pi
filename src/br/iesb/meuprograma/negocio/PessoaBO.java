@@ -112,5 +112,31 @@ public class PessoaBO implements BO<Pessoa> {
         }
         return lista;
     }
+    public List<Pessoa> listarPorNome(String nome) throws NegocioException {
+        List<Pessoa> lista = new ArrayList<Pessoa>();
+        PessoaDAO dao = new PessoaDAO();
+        try {
+            lista = dao.listarPorNome(nome);
+            if (lista.isEmpty()) {
+                throw new NegocioException("Nenhuma Pessoa encontrada");
+            }
+        } catch (DadosException ex) {
+            throw new NegocioException(ex.getMessage(), ex);
+        }
+        return lista;
+    }
+    public List<Pessoa> listarPorCpf(String cpf) throws NegocioException {
+        List<Pessoa> lista = new ArrayList<Pessoa>();
+        PessoaDAO dao = new PessoaDAO();
+        try {
+            lista = dao.listarPorCpf(cpf);
+            if (lista.isEmpty()) {
+                throw new NegocioException("Nenhuma Pessoa encontrada");
+            }
+        } catch (DadosException ex) {
+            throw new NegocioException(ex.getMessage(), ex);
+        }
+        return lista;
+    }
 
 }

@@ -109,15 +109,16 @@ public class PessoaDAO implements DAO<Pessoa> {
                 pessoa.setEmail(resultado.getString(7));
                 pessoa.setTelefone(resultado.getString(8));
                 pessoa.setCelular(resultado.getString(9));
-                pessoa.setBloco(resultado.getString(10));
-                pessoa.setUnidade(resultado.getInt(11));
-                pessoa.setDataCadastro(resultado.getString(12));
-                pessoa.setMorador(resultado.getString(13));
-                pessoa.setTipo(resultado.getString(14));
+                pessoa.setId(resultado.getInt(10));
+                pessoa.setBloco(resultado.getString(11));
+                pessoa.setUnidade(resultado.getInt(12));
+                pessoa.setDataCadastro(resultado.getString(13));
+                pessoa.setMorador(resultado.getString(14));
+                pessoa.setTipo(resultado.getString(15));
 
             }
         } catch (SQLException ex) {
-            throw new DadosException("Erro ao Consultar Pessoa. Morivo: " + ex.getMessage());
+            throw new DadosException("Erro ao Consultar Pessoa. Motivo: " + ex.getMessage());
         }
         return pessoa;
     }
@@ -141,11 +142,77 @@ public class PessoaDAO implements DAO<Pessoa> {
                 pessoa.setEmail(resultado.getString(7));
                 pessoa.setTelefone(resultado.getString(8));
                 pessoa.setCelular(resultado.getString(9));
-                pessoa.setBloco(resultado.getString(10));
-                pessoa.setUnidade(resultado.getInt(11));
-                pessoa.setDataCadastro(resultado.getString(12));
-                pessoa.setMorador(resultado.getString(13));
-                pessoa.setTipo(resultado.getString(14));
+                pessoa.setId(resultado.getInt(10));
+                pessoa.setBloco(resultado.getString(11));
+                pessoa.setUnidade(resultado.getInt(12));
+                pessoa.setDataCadastro(resultado.getString(13));
+                pessoa.setMorador(resultado.getString(14));
+                pessoa.setTipo(resultado.getString(15));
+                lista.add(pessoa);
+            }
+        } catch (SQLException ex) {
+            throw new DadosException("Erro ao Consultar Pessoa. Morivo: " + ex.getMessage());
+        }
+        return lista;
+    }
+
+    public List<Pessoa> listarPorNome(String nome) throws DadosException {
+        List<Pessoa> lista = new ArrayList<Pessoa>();
+        Pessoa pessoa = new Pessoa();
+        Connection conexao = ConexaoBD.getConexao();
+        String sql = "SELECT * FROM PESSOA WHERE NOME LIKE ?";
+        try {
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, "%"+nome+"%");
+            ResultSet resultado = comando.executeQuery();
+            if (resultado.next()) {
+                pessoa.setNome(resultado.getString(1));
+                pessoa.setRg(resultado.getString(2));
+                pessoa.setCpf(resultado.getString(3));
+                pessoa.setDataNascimento(resultado.getString(4));
+                pessoa.setGenero(resultado.getString(5));
+                pessoa.setEndereco(resultado.getString(6));
+                pessoa.setEmail(resultado.getString(7));
+                pessoa.setTelefone(resultado.getString(8));
+                pessoa.setCelular(resultado.getString(9));
+                pessoa.setId(resultado.getInt(10));
+                pessoa.setBloco(resultado.getString(11));
+                pessoa.setUnidade(resultado.getInt(12));
+                pessoa.setDataCadastro(resultado.getString(13));
+                pessoa.setMorador(resultado.getString(14));
+                pessoa.setTipo(resultado.getString(15));
+                lista.add(pessoa);
+            }
+        } catch (SQLException ex) {
+            throw new DadosException("Erro ao Consultar Pessoa. Morivo: " + ex.getMessage());
+        }
+        return lista;
+    }
+    public List<Pessoa> listarPorCpf(String cpf) throws DadosException {
+        List<Pessoa> lista = new ArrayList<Pessoa>();
+        Pessoa pessoa = new Pessoa();
+        Connection conexao = ConexaoBD.getConexao();
+        String sql = "SELECT * FROM PESSOA WHERE CPF=?";
+        try {
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, cpf);
+            ResultSet resultado = comando.executeQuery();
+            if (resultado.next()) {
+                pessoa.setNome(resultado.getString(1));
+                pessoa.setRg(resultado.getString(2));
+                pessoa.setCpf(resultado.getString(3));
+                pessoa.setDataNascimento(resultado.getString(4));
+                pessoa.setGenero(resultado.getString(5));
+                pessoa.setEndereco(resultado.getString(6));
+                pessoa.setEmail(resultado.getString(7));
+                pessoa.setTelefone(resultado.getString(8));
+                pessoa.setCelular(resultado.getString(9));
+                pessoa.setId(resultado.getInt(10));
+                pessoa.setBloco(resultado.getString(11));
+                pessoa.setUnidade(resultado.getInt(12));
+                pessoa.setDataCadastro(resultado.getString(13));
+                pessoa.setMorador(resultado.getString(14));
+                pessoa.setTipo(resultado.getString(15));
                 lista.add(pessoa);
             }
         } catch (SQLException ex) {
