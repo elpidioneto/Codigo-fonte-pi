@@ -8,6 +8,7 @@ package br.iesb.meuprograma.apresentacao;
 import br.iesb.meuprograma.entidades.Pessoa;
 import br.iesb.meuprograma.negocio.NegocioException;
 import br.iesb.meuprograma.negocio.PessoaBO;
+import java.awt.Frame;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -70,6 +71,11 @@ public class JDialogSindico_PesquisaPessoa extends javax.swing.JDialog {
         jPanelGrupoBotoes.add(jButtonSair);
 
         jButtonEditar.setText("EDITAR");
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
         jPanelGrupoBotoes.add(jButtonEditar);
 
         jButtonExcluir.setText("EXCLUIR");
@@ -346,6 +352,35 @@ public class JDialogSindico_PesquisaPessoa extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        if (jTableListar.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(this, "Selecione uma pessoa para excluir",
+                    "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        int opcao = JOptionPane.showConfirmDialog(this, "Deseja editar esta pessoa?",
+                "Confirmação", JOptionPane.INFORMATION_MESSAGE);
+        if (opcao == JOptionPane.NO_OPTION) {
+            return;
+        }
+        Pessoa pessoa = new Pessoa();
+        pessoa.setId(Integer.valueOf(jTableListar.getValueAt(jTableListar.getSelectedRow(), 0).toString()));
+        
+        PessoaBO bo = new PessoaBO();
+        try {
+            pessoa = bo.consultar(pessoa.getId());
+            JDialogSindico_Cadastro dialogo = new JDialogSindico_Cadastro((Frame) this.getParent(), true);
+            dialogo.editar(pessoa);
+            dialogo.setVisible(true);
+            
+        } catch (NegocioException ex) {
+            
+         if(ex.getCause()==null)JOptionPane.showMessageDialog(this, ex.getMessage(),
+                 "AVISO",JOptionPane.INFORMATION_MESSAGE);
+         else JOptionPane.showMessageDialog(rootPane,ex.getCause(),"Aviso",JOptionPane.INFORMATION_MESSAGE); ;
+        }
+    }//GEN-LAST:event_jButtonEditarActionPerformed
 
     /**
      * @param args the command line arguments

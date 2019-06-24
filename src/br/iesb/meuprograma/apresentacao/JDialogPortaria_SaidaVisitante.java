@@ -11,8 +11,6 @@ import br.iesb.meuprograma.negocio.VisitanteBO;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -173,6 +171,8 @@ public class JDialogPortaria_SaidaVisitante extends javax.swing.JDialog {
 
         try {
             bo.alterar(visitante);
+            JOptionPane.showMessageDialog(this, "Saída marcada com sucesso",
+                    "Informação",JOptionPane.INFORMATION_MESSAGE);            
         } catch (NegocioException ex) {
             {
                 if (ex.getCause() == null) {

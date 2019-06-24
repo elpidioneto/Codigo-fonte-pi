@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
 
 public class JDialogSindico_Cadastro extends javax.swing.JDialog {
@@ -25,7 +26,7 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -63,6 +64,7 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
         jButtonIncluir_Unidade = new javax.swing.JButton();
         jLabelCelular = new javax.swing.JLabel();
         jFormattedTextFieldCelular = new javax.swing.JFormattedTextField();
+        jButtonAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Perfil");
@@ -231,6 +233,13 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
             ex.printStackTrace();
         }
 
+        jButtonAlterar.setText("Alterar");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
         jPanelPrincipalLayout.setHorizontalGroup(
@@ -279,6 +288,8 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
                             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                                 .addComponent(jButtonVoltar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonAlterar)
+                                .addGap(18, 18, 18)
                                 .addComponent(jButtonCadastrar))
                             .addComponent(jPanelCadastroUnidade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
@@ -337,7 +348,8 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonVoltar)
-                    .addComponent(jButtonCadastrar))
+                    .addComponent(jButtonCadastrar)
+                    .addComponent(jButtonAlterar))
                 .addContainerGap())
         );
 
@@ -362,7 +374,7 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         //Coleta de dados do formulário
-        Pessoa pessoa = new Pessoa();
+        Pessoa pessoa= new Pessoa();
         pessoa.setNome(jTextFieldNome.getText());
         pessoa.setDataNascimento(jFormattedTextFieldDtNasc.getText());
         pessoa.setCpf(jFormattedTextFieldCPF.getText());
@@ -388,10 +400,16 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
 
         //Inclusão do usuário e teste de validação
         PessoaBO bo = new PessoaBO();
-        try {
+        try {                        
+            if(pessoa.getId() == 0){
             bo.inserir(pessoa);
             JOptionPane.showMessageDialog(this, "Usuário Incluido com Sucesso!",
                     "Informação", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                bo.alterar(pessoa);
+                JOptionPane.showMessageDialog(this, "Usuário Alterado com Sucesso!",
+                    "Informação", JOptionPane.INFORMATION_MESSAGE);
+            }
             dispose();
         } catch (NegocioException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO",
@@ -447,6 +465,10 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jComboBoxBlocoItemStateChanged
 
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -489,9 +511,29 @@ public class JDialogSindico_Cadastro extends javax.swing.JDialog {
             }
         });
     }
+    public void editar(Pessoa pessoa){
+        jTextFieldNome.setText(pessoa.getNome());
+        jFormattedTextFieldCPF.setText(pessoa.getCpf());
+        jFormattedTextFieldRG.setText(pessoa.getRg());
+        jFormattedTextFieldDtNasc.setText(pessoa.getDataNascimento());
+        jFormattedTextFieldTelefone.setText(pessoa.getTelefone());
+        jFormattedTextFieldCelular.setText(pessoa.getCelular());
+        jTextFieldEndereco.setText(pessoa.getEndereco());
+        jTextFieldEmail.setText(pessoa.getEmail());
+        if(pessoa.getGenero().equals("Masculino"))jRadioButtonMasc.setSelected(true);
+        if(pessoa.getGenero().equals("Feminino"))jRadioButtonFem.setSelected(true);
+        jComboBoxBloco.getModel().setSelectedItem(pessoa.getBloco());
+        jComboBoxUnidade.getModel().setSelectedItem(pessoa.getUnidade());
+        jComboBoxMorador.getModel().setSelectedItem(pessoa.getMorador());
+        jComboBoxTipo.getModel().setSelectedItem(pessoa.getTipo());
+        
+        jButtonCadastrar.setVisible(false);
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupGenero;
+    private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonIncluir_Unidade;
     private javax.swing.JButton jButtonVoltar;
