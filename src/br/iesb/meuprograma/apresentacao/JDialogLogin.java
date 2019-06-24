@@ -147,13 +147,15 @@ public class JDialogLogin extends javax.swing.JDialog {
            new JFramePrincipal().setVisible(true);
            this.dispose();
        }else{
-           JOptionPane.showMessageDialog(null, "Senha incorreta!");
+           JOptionPane.showMessageDialog(null, "Senha incorreta! Tente novamente ou procure um administrador! ");
        }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnEsqueciSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsqueciSenhaActionPerformed
        JDialogEsqueciASenha dialog = new JDialogEsqueciASenha(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
+ 
+       
     }//GEN-LAST:event_btnEsqueciSenhaActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
