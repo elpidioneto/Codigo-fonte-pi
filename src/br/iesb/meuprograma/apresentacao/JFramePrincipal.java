@@ -33,6 +33,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuVisitante = new javax.swing.JMenu();
+        jMenuItemCriarVisitante = new javax.swing.JMenuItem();
+        jMenuItemListarVisitante = new javax.swing.JMenuItem();
+        jMenuItemSaídaVisitante = new javax.swing.JMenuItem();
         jmMorador = new javax.swing.JMenu();
         jmiCadastro = new javax.swing.JMenuItem();
         jMenuItemConsultarCadastro = new javax.swing.JMenuItem();
@@ -107,33 +111,33 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jmPortaria.add(jmiCorrespondencia);
 
-        jMenu1.setText("Visitantes");
+        jMenuVisitante.setText("Visitantes");
 
-        jMenuItem1.setText("Cadastro");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemCriarVisitante.setText("Cadastro");
+        jMenuItemCriarVisitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItemCriarVisitanteActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenuVisitante.add(jMenuItemCriarVisitante);
 
-        jMenuItem2.setText("Saida");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemListarVisitante.setText("Listar Visitante");
+        jMenuItemListarVisitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMenuItemListarVisitanteActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenuVisitante.add(jMenuItemListarVisitante);
 
-        jMenuItem3.setText("Listagem");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemSaídaVisitante.setText("Saída");
+        jMenuItemSaídaVisitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMenuItemSaídaVisitanteActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMenuVisitante.add(jMenuItemSaídaVisitante);
 
-        jmPortaria.add(jMenu1);
+        jmPortaria.add(jMenuVisitante);
 
         jMenuBarPrincipal.add(jmPortaria);
 
@@ -436,23 +440,17 @@ public class JFramePrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jmiSairActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItemCriarVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCriarVisitanteActionPerformed
         // TODO add your handling code here:
         JDialogPortaria_CadastroVisitante cadastroVisita = new JDialogPortaria_CadastroVisitante(new javax.swing.JFrame(), true);
         cadastroVisita.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuItemCriarVisitanteActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-        JDialogAdmContasaPagareReceber dialogo = new JDialogAdmContasaPagareReceber(new javax.swing.JFrame(), true);
-        dialogo.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void jMenuItemListarVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListarVisitanteActionPerformed
         // TODO add your handling code here:
         JDialogPortaria_ListarVisitantes listaVisita = new JDialogPortaria_ListarVisitantes(new javax.swing.JFrame(), true);
         listaVisita.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_jMenuItemListarVisitanteActionPerformed
 
     private void jmiEmitirBoletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEmitirBoletoActionPerformed
         // TODO add your handling code here:
@@ -468,7 +466,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jMenuItemConsultarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConsultarCadastroActionPerformed
         // TODO add your handling code here:
-        JDialogSindico_EditarCadastro editarCadastro = new JDialogSindico_EditarCadastro(new javax.swing.JFrame(), true);
+        JDialogSindico_PesquisaPessoa editarCadastro = new JDialogSindico_PesquisaPessoa(new javax.swing.JFrame(), true);
         editarCadastro.setVisible(true);
     }//GEN-LAST:event_jMenuItemConsultarCadastroActionPerformed
 
@@ -486,6 +484,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
     dialogo.setVisible(true);  
     }//GEN-LAST:event_jmiRelatorioActionPerformed
 
+    private void jMenuItemSaídaVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSaídaVisitanteActionPerformed
+        // TODO add your handling code here:
+        JDialogPortaria_SaidaVisitante saidaVisita = new JDialogPortaria_SaidaVisitante(new javax.swing.JFrame(), true);
+        saidaVisita.setVisible(true);
+    }//GEN-LAST:event_jMenuItemSaídaVisitanteActionPerformed
     private void jmiBibliotecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiBibliotecaActionPerformed
         // TODO add your handling code here:
         JDialogBiblioteca dialogo = new JDialogBiblioteca(new javax.swing.JFrame(), true);
@@ -540,7 +543,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItemConsultarCadastro;
+    private javax.swing.JMenuItem jMenuItemCriarVisitante;
+    private javax.swing.JMenuItem jMenuItemListarVisitante;
+    private javax.swing.JMenuItem jMenuItemSaídaVisitante;
     private javax.swing.JMenuItem jMenuItemSobre;
+    private javax.swing.JMenu jMenuVisitante;
     private javax.swing.JComboBox<String> jcbPerfil;
     private javax.swing.JMenu jmAdministracao;
     private javax.swing.JMenu jmArquivo;

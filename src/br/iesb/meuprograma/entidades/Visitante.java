@@ -5,16 +5,38 @@
  */
 package br.iesb.meuprograma.entidades;
 
-import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author LENOVO
  */
-public class Visitante extends Pessoa{
-    String dataEntrada;
-    String horaEntrada;
-    String tipoVisita;        
+public class Visitante extends Pessoa {
+
+    private String dataHoraEntrada;
+    private String dataHoraSaida;
+    private String tipoVisita;
+    private String bloco;
+    private int unidade;
+
+    public Visitante() {
+    }
+
+    public String getDataHoraEntrada() {
+        return dataHoraEntrada;
+    }
+
+    public void setDataHoraEntrada(String dataHoraEntrada) {
+        this.dataHoraEntrada = dataHoraEntrada;
+    }
+
+    public String getDataHoraSaida() {
+        return dataHoraSaida;
+    }
+
+    public void setDataHoraSaida(String dataHoraSaida) {
+        this.dataHoraSaida = dataHoraSaida;
+    }
 
     public String getTipoVisita() {
         return tipoVisita;
@@ -24,19 +46,19 @@ public class Visitante extends Pessoa{
         this.tipoVisita = tipoVisita;
     }
 
-    public String getDataEntrada() {
-        return dataEntrada;
+    public String getBloco() {
+        return bloco;
     }
 
-    public void setDataEntrada(String dataEntrada) {
-        this.dataEntrada = dataEntrada;
+    public void setBloco(String bloco) {
+        this.bloco = bloco;
     }
 
-    public String getHoraEntrada() {
-        return horaEntrada;
+    public int getUnidade() {
+        return unidade;
     }
 
-    public void setHoraEntrada(String horaEntrada) {
-        this.horaEntrada = horaEntrada;
+    public void setUnidade(int unidade) {
+        this.unidade = unidade;
     }
 }

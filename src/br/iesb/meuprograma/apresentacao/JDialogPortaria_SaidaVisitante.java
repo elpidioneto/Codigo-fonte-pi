@@ -5,6 +5,15 @@
  */
 package br.iesb.meuprograma.apresentacao;
 
+import br.iesb.meuprograma.entidades.Visitante;
+import br.iesb.meuprograma.negocio.NegocioException;
+import br.iesb.meuprograma.negocio.VisitanteBO;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author LENOVO
@@ -35,10 +44,20 @@ public class JDialogPortaria_SaidaVisitante extends javax.swing.JDialog {
         jTableVisitantesAtivos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanelBotoes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButtonMarcarSaida.setText("Marcar Saída");
+        jButtonMarcarSaida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMarcarSaidaActionPerformed(evt);
+            }
+        });
 
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -74,11 +93,11 @@ public class JDialogPortaria_SaidaVisitante extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Visitante", "Data/Hora Entrada", "Bloco/Unidade", "Data/Hora Saida"
+                "Id", "Visitante", "Data/Hora Entrada", "Bloco", "Unidade", "Tipo de Visita", "Data/Hora Saida"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -96,6 +115,77 @@ public class JDialogPortaria_SaidaVisitante extends javax.swing.JDialog {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        VisitanteBO bo = new VisitanteBO();
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) jTableVisitantesAtivos.getModel();
+            modelo.setRowCount(0);
+            List<Visitante> lista = bo.listarSaida();
+            for (Visitante visitante : lista) {
+                modelo.addRow(new Object[]{
+                    visitante.getId(),
+                    visitante.getNome(),
+                    visitante.getDataHoraEntrada(),
+                    visitante.getBloco(),
+                    visitante.getUnidade(),
+                    visitante.getTipoVisita(),
+                    visitante.getDataHoraSaida()
+                });
+
+            }
+        } catch (NegocioException ex) {
+            if (ex.getCause() == null) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, ex.getCause().getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jButtonMarcarSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMarcarSaidaActionPerformed
+        // TODO add your handling code here
+        if (jTableVisitantesAtivos.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(this, "Selecione um visitante", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        int opcao = JOptionPane.showConfirmDialog(this, "Deseja Marcar saída para visitante?", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
+        if (opcao == JOptionPane.NO_OPTION) {
+            return;
+        }
+        Date data = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dataTx = sdf.format(data);
+        Visitante visitante = new Visitante();
+        visitante.setId(Integer.valueOf(jTableVisitantesAtivos.getValueAt(jTableVisitantesAtivos.getSelectedRow(), 0).toString()));
+        visitante.setNome(jTableVisitantesAtivos.getValueAt(jTableVisitantesAtivos.getSelectedRow(), 1).toString());
+        visitante.setDataHoraEntrada(jTableVisitantesAtivos.getValueAt(jTableVisitantesAtivos.getSelectedRow(), 2).toString());
+        visitante.setBloco(jTableVisitantesAtivos.getValueAt(jTableVisitantesAtivos.getSelectedRow(), 3).toString());
+        visitante.setUnidade(Integer.valueOf(jTableVisitantesAtivos.getValueAt(jTableVisitantesAtivos.getSelectedRow(), 4).toString()));
+        visitante.setTipoVisita(jTableVisitantesAtivos.getValueAt(jTableVisitantesAtivos.getSelectedRow(), 5).toString());
+        visitante.setDataHoraSaida(dataTx);
+
+        VisitanteBO bo = new VisitanteBO();
+
+        try {
+            bo.alterar(visitante);
+            JOptionPane.showMessageDialog(this, "Saída marcada com sucesso",
+                    "Informação",JOptionPane.INFORMATION_MESSAGE);            
+        } catch (NegocioException ex) {
+            {
+                if (ex.getCause() == null) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, ex.getCause().getMessage(), "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        }
+            dispose();
+
+
+    }//GEN-LAST:event_jButtonMarcarSaidaActionPerformed
 
     /**
      * @param args the command line arguments

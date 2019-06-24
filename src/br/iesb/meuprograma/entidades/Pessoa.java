@@ -1,59 +1,35 @@
-
 package br.iesb.meuprograma.entidades;
 
 import java.awt.image.BufferedImage;
-import java.sql.Date;
-
 
 public class Pessoa {
+
     private String nome;
     private String rg;
     private String cpf;
     private String dataNascimento;
-    private Date dataCadastro;
-    private String genero;  
+    private String dataCadastro;
+    private String genero;
     private String endereco;
-    private String email;    
+    private String email;
     private String telefone;
     private String celular;
-    private int Id;
-    private BufferedImage foto;
-    private BufferedImage biometria;
-    private String senha;
-    private String login;
+    private int Id;    
+    private String bloco;
+    private int unidade;
+    private String morador;
+    private String tipo;
 
-    public String getLogin() {
-        return login;
+    public String getMorador() {
+        return morador;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-   
-
-    public String getSenha() {
-        return senha;
+    public void setMorador(String morador) {
+        this.morador = morador;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public BufferedImage getFoto() {
-        return foto;
-    }
-
-    public void setFoto(BufferedImage foto) {
-        this.foto = foto;
-    }
-
-    public BufferedImage getBiometria() {
-        return biometria;
-    }
-
-    public void setBiometria(BufferedImage biometria) {
-        this.biometria = biometria;
-    }
+    public Pessoa() {
+    }   
 
     public int getId() {
         return Id;
@@ -85,7 +61,7 @@ public class Pessoa {
 
     public void setGenero(String genero) {
         this.genero = genero;
-        
+
     }
 
     public String getEndereco() {
@@ -111,7 +87,6 @@ public class Pessoa {
     public void setCelular(String celular) {
         this.celular = celular;
     }
-    
 
     public String getNome() {
         return nome;
@@ -119,8 +94,8 @@ public class Pessoa {
 
     public void setNome(String nome) {
         this.nome = "";
-        if (nome != null){
-        this.nome = nome;
+        if (nome != null) {
+            this.nome = nome;
         }
     }
 
@@ -132,11 +107,11 @@ public class Pessoa {
         this.rg = rg;
     }
 
-    public Date getDataCadastro() {
+    public String getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Date dataCadastro) {
+    public void setDataCadastro(String dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 
@@ -147,5 +122,29 @@ public class Pessoa {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    
+
+    public String getBloco() {
+        return bloco;
+    }
+
+    public void setBloco(String bloco) {
+        this.bloco = bloco;
+    }
+
+    public int getUnidade() {
+        return unidade;
+    }
+
+    public void setUnidade(int Unidade) {
+        this.unidade = Unidade;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
 }
