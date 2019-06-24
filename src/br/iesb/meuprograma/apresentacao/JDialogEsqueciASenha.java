@@ -114,12 +114,13 @@ public class JDialogEsqueciASenha extends javax.swing.JDialog {
            JOptionPane.showMessageDialog(null, "Email enviado com sucesso!");
            this.dispose();
        }else{
-           JOptionPane.showMessageDialog(null, "Email Incorreto!");
+           JOptionPane.showMessageDialog(null, "Email Incorreto ou não encontrado na base de dados, favor procure um administrador. ");
        }
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-       dispose();  
+       
+        this.dispose(); 
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
