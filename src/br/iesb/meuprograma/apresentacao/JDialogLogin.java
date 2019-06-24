@@ -147,7 +147,7 @@ public class JDialogLogin extends javax.swing.JDialog {
            new JFramePrincipal().setVisible(true);
            this.dispose();
        }else{
-           JOptionPane.showMessageDialog(null, "Senha incorreta! Tente novamente ou procure um administrador! ");
+           JOptionPane.showMessageDialog(null, "login ou senha incorreta! Tente novamente ou procure um administrador! ");
        }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
