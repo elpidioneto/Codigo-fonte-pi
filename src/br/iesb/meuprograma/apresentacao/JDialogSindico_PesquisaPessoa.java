@@ -73,6 +73,11 @@ public class JDialogSindico_PesquisaPessoa extends javax.swing.JDialog {
         jPanelGrupoBotoes.add(jButtonEditar);
 
         jButtonExcluir.setText("EXCLUIR");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
         jPanelGrupoBotoes.add(jButtonExcluir);
 
         jTableListar.setModel(new javax.swing.table.DefaultTableModel(
@@ -250,7 +255,7 @@ public class JDialogSindico_PesquisaPessoa extends javax.swing.JDialog {
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         if (jRadioButtonNome.isSelected()) {
             PessoaBO bo = new PessoaBO();
-            String nome="";
+            String nome = "";
             try {
                 DefaultTableModel modelo = (DefaultTableModel) jTableListar.getModel();
                 modelo.setRowCount(0);
@@ -279,7 +284,7 @@ public class JDialogSindico_PesquisaPessoa extends javax.swing.JDialog {
         }
         if (jRadioButtonCpf.isSelected()) {
             PessoaBO bo = new PessoaBO();
-            String cpf="";
+            String cpf = "";
             try {
                 DefaultTableModel modelo = (DefaultTableModel) jTableListar.getModel();
                 modelo.setRowCount(0);
@@ -307,6 +312,40 @@ public class JDialogSindico_PesquisaPessoa extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        if (jTableListar.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(this, "Selecione uma pessoa para excluir",
+                    "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        int opcao = JOptionPane.showConfirmDialog(this, "Deseja excluir a pessoa?",
+                "Confirmação", JOptionPane.INFORMATION_MESSAGE);
+        if (opcao == JOptionPane.NO_OPTION) {
+            return;
+        }
+
+        Pessoa pessoa = new Pessoa();
+        pessoa.setId(Integer.valueOf(jTableListar.getValueAt(jTableListar.getSelectedRow(), 0).toString()));
+
+        PessoaBO bo = new PessoaBO();
+
+        try {
+            bo.excluir(pessoa);
+            formWindowOpened(null);
+            JOptionPane.showMessageDialog(this, "Pessoa excluida com sucesso", "Informação",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } catch (NegocioException ex) {
+            if (ex.getCause() == null) {
+                JOptionPane.showMessageDialog(this,
+                        ex.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, ex.getCause().getMessage(),
+                        "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            };
+
+        }
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     /**
      * @param args the command line arguments
