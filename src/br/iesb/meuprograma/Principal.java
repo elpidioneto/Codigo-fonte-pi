@@ -1,5 +1,6 @@
 package br.iesb.meuprograma;
 
+import br.iesb.meuprograma.apresentacao.JDialogLogin;
 import br.iesb.meuprograma.apresentacao.JFramePrincipal;
 import java.awt.EventQueue;
 import java.awt.Frame;
@@ -10,9 +11,9 @@ public class Principal {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JFramePrincipal jFramePrincipal = new JFramePrincipal();
-                jFramePrincipal.setVisible(true);
-                jFramePrincipal.setExtendedState(Frame.MAXIMIZED_BOTH);
+                JDialogLogin dialog = new JDialogLogin(new javax.swing.JFrame(), true);
+        dialog.setVisible(true);
+                
             }
         });
     }
